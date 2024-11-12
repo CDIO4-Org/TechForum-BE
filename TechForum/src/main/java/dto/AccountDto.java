@@ -1,29 +1,20 @@
-package model;
+package dto;
 
 import jakarta.persistence.*;
+import model.Role;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-public class Account {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AccountDto {
     private Integer id;
     private String accountName;
     private String password;
-    @Column(columnDefinition = "bit")
-    @ColumnDefault("0")
     private Boolean status;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "account_role",joinColumns = @JoinColumn(name = "account_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
     Set<Role> roles = new HashSet<>();
 
-    public Account() {
-    }
+    public AccountDto() {}
 
     public Integer getId() {
         return id;

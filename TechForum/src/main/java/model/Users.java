@@ -5,10 +5,12 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(columnDefinition = "LONGTEXT")
+    private String avatar;
     @Column(columnDefinition = "varchar(50)")
     private String firstName;
     @Column(columnDefinition = "varchar(50)")
@@ -25,7 +27,7 @@ public class User {
     @JoinColumn(name = "account_id")
     private Account account;
 
-    public User() {
+    public Users() {
     }
 
     public Long getId() {
@@ -98,5 +100,13 @@ public class User {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }
