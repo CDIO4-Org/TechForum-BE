@@ -1,15 +1,18 @@
 package com.example.techforum.model;
 
+import com.example.techforum.dto.BlogDto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Blogs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String title;
     private LocalDateTime beginDate;
     @Column(columnDefinition = "LONGTEXT")
@@ -24,14 +27,26 @@ public class Blogs {
     @JoinColumn(name = "category_id")
     private Categories category;
 
+
     public Blogs() {
     }
+    @PrePersist
+    protected void beginDate() {
+        this.beginDate = LocalDateTime.now(); // Gán thời gian khi tạo mới
+    }
+    public Blogs(BlogDto blog) {
+        this.title = blog.getTitle();
+        this.content = blog.getContent();
+        this.category = blog.getCategory();
+        this.user = blog.getUser();
+        this.status = false;
+    }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
