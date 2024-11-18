@@ -15,7 +15,9 @@ import java.util.List;
 @Repository
 public interface IBlogRepo extends JpaRepository<Blogs, Long> {
     @Query("SELECT b FROM Blogs b WHERE b.status = true")
-    Page<Blogs> findAllBlogStatusTrue(Pageable pageable);
+    Page<Blogs> findAllStatusTrue(Pageable pageable);
+
+    Page<Blogs> findByStatus(Boolean status, Pageable pageable);
     List<BlogDto> findByUser(Users user);
     @Query("SELECT b FROM Blogs b WHERE b.title LIKE %:title%")
     List<BlogDto> findByTitle(@Param("title") String title);

@@ -22,15 +22,39 @@ import java.util.List;
 public class BlogController {
     @Autowired
     private IBlogService blogService;
-    @GetMapping("/")
-    public Page<BlogDto> showAllBlog(
-            @RequestParam(defaultValue = "0") int page,
+    @GetMapping("/getAllBlog")
+    public ResponseEntity<List<BlogDto>> getAllBlogs() {
+        try {
+            List<BlogDto> blogs = blogService.findAll();
+            return ResponseEntity.ok(blogs); // HTTP 200
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null); // HTTP 500
+        }
+    }
+    @GetMapping("/nonActivedBlogs")
+    public ResponseEntity<Page<BlogDto>> getBlogNonActived(
+            @RequestParam(defaultValue = "0") int page, // Trang bắt đầu, mặc định là 0
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "id,asc") String[] sort) {
-
+            @RequestParam(defaultValue = "beginDate,asc") String[] sort// Kích thước mỗi trang, mặc định là 10
+    ) {
         Sort.Direction direction = Sort.Direction.fromString(sort[1]);
         Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort[0]));
-        return blogService.findAll(pageable);
+
+        Page<BlogDto> activeBlogs = blogService.findByStatus(false, pageable);
+        return ResponseEntity.ok(activeBlogs);
+    }
+    @GetMapping("/activedBlogs")
+    public ResponseEntity<Page<BlogDto>> getActivedBlos(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "beginDate,asc") String[] sort
+    ) {
+        Sort.Direction direction = Sort.Direction.fromString(sort[1]);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort[0]));
+
+        Page<BlogDto> activeBlogs = blogService.findByStatus(true, pageable);
+        return ResponseEntity.ok(activeBlogs);
     }
 
 
@@ -50,11 +74,23 @@ public class BlogController {
     public ResponseEntity<String> updateBlog(@RequestParam Long id, @RequestBody  BlogDto blogDTO) {
         try {
             blogService.updateBlog(id, blogDTO);
-            return new ResponseEntity<>("Product updated successfully", HttpStatus.OK);
+            return new ResponseEntity<>("Blog updated successfully", HttpStatus.OK);
         } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Blog not found", HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>("Failed to update Product", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PutMapping("/acctiveBlog")
+    public ResponseEntity<String> acctiveBlog(@RequestParam Long id) {
+        try {
+            blogService.acctiveBlog(id);
+
+            return new ResponseEntity<>("Blog acctive successfully", HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>("Blog not found", HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to update Blog", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/findByTitle")

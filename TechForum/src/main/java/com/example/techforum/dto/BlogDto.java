@@ -28,6 +28,15 @@ public class BlogDto {
     public BlogDto() {
     }
 
+    public BlogDto(String title, LocalDateTime beginDate, String content, Boolean status, Users user, Categories category) {
+        this.title = title;
+        this.beginDate = beginDate;
+        this.content = content;
+        this.status = status;
+        this.user = user;
+        this.category = category;
+    }
+
     public BlogDto(Blogs blog) {
         this.title = blog.getTitle();
         this.content = blog.getContent();

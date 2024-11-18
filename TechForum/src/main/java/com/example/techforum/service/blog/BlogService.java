@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.techforum.repository.IBlogRepo;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BlogService implements IBlogService{
@@ -34,19 +35,28 @@ public class BlogService implements IBlogService{
     }
 
     @Override
+    public void acctiveBlog(Long id) {
+        Blogs blog = iBlogRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Blog with id " + id + " not found"));
+        blog.setStatus(true);
+        iBlogRepository.save(blog);
+    }
+
+    @Override
     public List<BlogDto> findByUser(Users user) {
         return iBlogRepository.findByUser(user);
     }
 
     @Override
-    public Page<BlogDto> findAll(Pageable pageable) {
-        Page<Blogs>blogs =iBlogRepository.findAll(pageable);
-        return  blogs.map(blog -> new BlogDto(blog));
+    public List<BlogDto> findAll() {
+        List<Blogs> blogs = iBlogRepository.findAll(); // Lấy danh sách Blogs từ repository
+        return blogs.stream()
+                .map(blog -> new BlogDto(blog)) // Chuyển đổi mỗi đối tượng Blogs thành BlogDto
+                .collect(Collectors.toList()); // Thu thập kết quả vào một List
     }
 
     @Override
-    public Page<BlogDto> findAllBlogStatusTrue(Pageable pageable) {
-        Page<Blogs>blogs =iBlogRepository.findAllBlogStatusTrue(pageable);
+    public Page<BlogDto> findByStatus(Boolean status, Pageable pageable) {
+        Page<Blogs>blogs = iBlogRepository.findByStatus(status, pageable);
         return  blogs.map(blog -> new BlogDto(blog));
     }
 
@@ -55,6 +65,7 @@ public class BlogService implements IBlogService{
     public Blogs addNewBlog(BlogDto blog) {
         return iBlogRepository.save(dtoToObject(blog));
     }
+
 
 
     @Override
