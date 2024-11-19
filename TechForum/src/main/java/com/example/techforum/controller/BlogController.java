@@ -1,6 +1,7 @@
 package com.example.techforum.controller;
 
 import com.example.techforum.dto.BlogDto;
+import com.example.techforum.dto.BlogDtoNew;
 import com.example.techforum.model.Blogs;
 import com.example.techforum.service.blog.IBlogService;
 import jakarta.persistence.EntityNotFoundException;
@@ -120,5 +121,6 @@ public class BlogController {
 //        }
 //        return ResponseEntity.ok(blogs);  // Trả về danh sách blog với mã 200 OK
 //    }
+
 
 }

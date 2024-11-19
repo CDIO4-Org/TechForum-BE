@@ -1,6 +1,7 @@
 package com.example.techforum.service.blog;
 
 import com.example.techforum.dto.BlogDto;
+import com.example.techforum.dto.BlogDtoNew;
 import com.example.techforum.model.Blogs;
 import com.example.techforum.model.Users;
 import jakarta.persistence.EntityNotFoundException;
@@ -87,6 +88,17 @@ public class BlogService implements IBlogService{
         return iBlogRepository.findByTitle(title);
 
     }
+
+    @Override
+    public Integer getLastInsert() {
+        return iBlogRepository.getLastInsert();
+    }
+
+    @Override
+    public Blogs findById(long id) {
+        return iBlogRepository.findObject(id);
+    }
+
     public Blogs dtoToObject(BlogDto blogDTO){
         return new Blogs(blogDTO);
     }
