@@ -1,50 +1,41 @@
 package com.example.techforum.dto;
 
-import com.example.techforum.model.Blogs;
 import com.example.techforum.model.Categories;
 import com.example.techforum.model.Users;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.PrePersist;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
 
-public class BlogDto {
-//    @NotBlank(message = "Title cannot be empty")
+public class BlogDtoNew {
+    //    @NotBlank(message = "Title cannot be empty")
 //    @Size(min = 3, max = 255, message = "Title must be between 3 and 255 characters")
     private String title;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime beginDate;
-//    @NotBlank(message = "Content cannot be empty")
+    //    @NotBlank(message = "Content cannot be empty")
 //    @Size(min = 3, message = "Content must be at least 3 characters")
     private String content;
+    @ColumnDefault("0")
     private Boolean status;
-//    @NotNull(message = "User cannot be null")
-    private Users user;
-//    @NotNull(message = "Category cannot be null")
-    private Categories category;
+    //    @NotNull(message = "User cannot be null")
+    private Integer user;
+    //    @NotNull(message = "Category cannot be null")
+    private Integer category;
 
-    public BlogDto() {
+    @PrePersist
+    protected void beginDate() {
+        this.beginDate = LocalDateTime.now(); // Gán thời gian khi tạo mới
     }
 
-    public BlogDto(String title, LocalDateTime beginDate, String content, Boolean status, Users user, Categories category) {
+    public BlogDtoNew(String title, LocalDateTime beginDate, String content, Boolean status, Integer user, Integer category) {
         this.title = title;
         this.beginDate = beginDate;
         this.content = content;
         this.status = status;
         this.user = user;
         this.category = category;
-    }
-
-    public BlogDto(Blogs blog) {
-        this.title = blog.getTitle();
-        this.content = blog.getContent();
-        this.category = blog.getCategory();
-        this.user = blog.getUser();
-        this.status = blog.getStatus();
-        this.beginDate = blog.getBeginDate();
     }
 
     public String getTitle() {
@@ -79,19 +70,19 @@ public class BlogDto {
         this.status = status;
     }
 
-    public Users getUser() {
+    public Integer getUser() {
         return user;
     }
 
-    public void setUser(Users user) {
+    public void setUser(Integer user) {
         this.user = user;
     }
 
-    public Categories getCategory() {
+    public Integer getCategory() {
         return category;
     }
 
-    public void setCategory(Categories category) {
+    public void setCategory(Integer category) {
         this.category = category;
     }
 }
