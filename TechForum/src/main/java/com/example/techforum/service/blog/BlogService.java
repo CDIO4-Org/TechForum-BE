@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.example.techforum.repository.IBlogRepo;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -94,6 +95,8 @@ public class BlogService implements IBlogService{
         return iBlogRepository.getLastInsert();
     }
 
+
+
     @Override
     public Blogs findById(long id) {
         return iBlogRepository.findObject(id);
@@ -102,6 +105,7 @@ public class BlogService implements IBlogService{
     public Blogs dtoToObject(BlogDto blogDTO){
         return new Blogs(blogDTO);
     }
+
 
 
 }

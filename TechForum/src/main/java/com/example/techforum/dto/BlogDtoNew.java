@@ -3,6 +3,8 @@ package com.example.techforum.dto;
 import com.example.techforum.model.Categories;
 import com.example.techforum.model.Users;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.PrePersist;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
 
@@ -15,11 +17,17 @@ public class BlogDtoNew {
     //    @NotBlank(message = "Content cannot be empty")
 //    @Size(min = 3, message = "Content must be at least 3 characters")
     private String content;
+    @ColumnDefault("0")
     private Boolean status;
     //    @NotNull(message = "User cannot be null")
     private Integer user;
     //    @NotNull(message = "Category cannot be null")
     private Integer category;
+
+    @PrePersist
+    protected void beginDate() {
+        this.beginDate = LocalDateTime.now(); // Gán thời gian khi tạo mới
+    }
 
     public BlogDtoNew(String title, LocalDateTime beginDate, String content, Boolean status, Integer user, Integer category) {
         this.title = title;
