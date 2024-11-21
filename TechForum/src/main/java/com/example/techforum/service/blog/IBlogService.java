@@ -12,8 +12,8 @@ public interface IBlogService {
     Blogs updateBlog(Long id, BlogDto updatedBlog);
     void acctiveBlog(Long id);
     List<BlogDto> findByUser(Users user);
-    List<BlogDto> findAll();
     Page<BlogDto> findByStatus(Boolean status, Pageable pageable);
+    List<BlogDto> getAcctivedBlogs();
     Blogs addNewBlog(BlogDto blog);
     BlogDto findOne(long id);
     void delete(long id);

@@ -46,18 +46,19 @@ public class BlogService implements IBlogService{
         return iBlogRepository.findByUser(user);
     }
 
-    @Override
-    public List<BlogDto> findAll() {
-        List<Blogs> blogs = iBlogRepository.findAll(); // Lấy danh sách Blogs từ repository
-        return blogs.stream()
-                .map(blog -> new BlogDto(blog)) // Chuyển đổi mỗi đối tượng Blogs thành BlogDto
-                .collect(Collectors.toList()); // Thu thập kết quả vào một List
-    }
 
     @Override
     public Page<BlogDto> findByStatus(Boolean status, Pageable pageable) {
         Page<Blogs>blogs = iBlogRepository.findByStatus(status, pageable);
         return  blogs.map(blog -> new BlogDto(blog));
+    }
+
+    @Override
+    public List<BlogDto> getAcctivedBlogs() {
+        List<Blogs> blogs = iBlogRepository.findByStatusTrue();
+        return blogs.stream()
+                .map(blog -> new BlogDto(blog))
+                .collect(Collectors.toList());
     }
 
 
@@ -75,6 +76,7 @@ public class BlogService implements IBlogService{
 
         return new BlogDto(blog);
     }
+
 
     @Override
     public void delete(long id) {

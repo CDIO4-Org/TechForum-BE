@@ -14,8 +14,7 @@ import java.util.List;
 
 @Repository
 public interface IBlogRepo extends JpaRepository<Blogs, Long> {
-    @Query("SELECT b FROM Blogs b WHERE b.status = true")
-    Page<Blogs> findAllStatusTrue(Pageable pageable);
+    List<Blogs> findByStatusTrue();
 
     Page<Blogs> findByStatus(Boolean status, Pageable pageable);
     List<BlogDto> findByUser(Users user);
