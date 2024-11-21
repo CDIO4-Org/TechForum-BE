@@ -24,16 +24,7 @@ import java.util.List;
 public class BlogController {
     @Autowired
     private IBlogService blogService;
-    @GetMapping("/getAllBlog")
-    public ResponseEntity<List<BlogDto>> getAllBlogs() {
-        try {
-            List<BlogDto> blogs = blogService.findAll();
-            return ResponseEntity.ok(blogs); // HTTP 200
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(null); // HTTP 500
-        }
-    }
+
     @GetMapping("/nonActivedBlogs")
     public ResponseEntity<Page<BlogDto>> getBlogNonActived(
             @RequestParam(defaultValue = "0") int page, // Trang bắt đầu, mặc định là 0
@@ -47,16 +38,14 @@ public class BlogController {
         return ResponseEntity.ok(activeBlogs);
     }
     @GetMapping("/activedBlogs")
-    public ResponseEntity<Page<BlogDto>> getActivedBlos(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "beginDate,asc") String[] sort
-    ) {
-        Sort.Direction direction = Sort.Direction.fromString(sort[1]);
-        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort[0]));
-
-        Page<BlogDto> activeBlogs = blogService.findByStatus(true, pageable);
-        return ResponseEntity.ok(activeBlogs);
+    public ResponseEntity<List<BlogDto>> getActivedBlogs() {
+        try {
+            List<BlogDto> blogs = blogService.getAcctivedBlogs();
+            return ResponseEntity.ok(blogs); // HTTP 200
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null); // HTTP 500
+        }
     }
 
 
