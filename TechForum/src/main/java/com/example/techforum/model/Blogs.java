@@ -42,6 +42,7 @@ public class Blogs {
         this.status = false;
     }
 
+
     public Long getId() {
         return id;
     }

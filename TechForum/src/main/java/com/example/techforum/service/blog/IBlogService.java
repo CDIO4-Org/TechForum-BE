@@ -1,6 +1,7 @@
 package com.example.techforum.service.blog;
 
 import com.example.techforum.dto.BlogDto;
+import com.example.techforum.dto.BlogDtoNew;
 import com.example.techforum.model.Blogs;
 import com.example.techforum.model.Users;
 import org.springframework.data.domain.Page;
@@ -18,4 +19,7 @@ public interface IBlogService {
     BlogDto findOne(long id);
     void delete(long id);
     List<BlogDto> findByTitle(String title);
+    Integer getLastInsert();
+    Blogs findById(long id);
+
 }

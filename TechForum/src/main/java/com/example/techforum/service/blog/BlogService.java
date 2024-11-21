@@ -1,6 +1,7 @@
 package com.example.techforum.service.blog;
 
 import com.example.techforum.dto.BlogDto;
+import com.example.techforum.dto.BlogDtoNew;
 import com.example.techforum.model.Blogs;
 import com.example.techforum.model.Users;
 import jakarta.persistence.EntityNotFoundException;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.example.techforum.repository.IBlogRepo;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,9 +91,23 @@ public class BlogService implements IBlogService{
         return iBlogRepository.findByTitle(title);
 
     }
+
+    @Override
+    public Integer getLastInsert() {
+        return iBlogRepository.getLastInsert();
+    }
+
+
+
+    @Override
+    public Blogs findById(long id) {
+        return iBlogRepository.findObject(id);
+    }
+
     public Blogs dtoToObject(BlogDto blogDTO){
         return new Blogs(blogDTO);
     }
+
 
 
 }

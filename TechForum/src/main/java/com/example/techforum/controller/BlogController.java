@@ -1,6 +1,7 @@
 package com.example.techforum.controller;
 
 import com.example.techforum.dto.BlogDto;
+import com.example.techforum.dto.BlogDtoNew;
 import com.example.techforum.model.Blogs;
 import com.example.techforum.service.blog.IBlogService;
 import jakarta.persistence.EntityNotFoundException;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
