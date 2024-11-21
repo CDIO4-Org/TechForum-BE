@@ -99,15 +99,4 @@ public class BlogController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);  // Nếu không tìm thấy, trả về lỗi 404
         }
     }
-
-
-//    @GetMapping("/findByStatusFalse")
-//    public ResponseEntity<List<BlogDto>> getBlogsByFalse() {
-//        List<BlogDto> blogs = blogService.findByStatusFalse();
-//        if (blogs.isEmpty()) {
-//            return ResponseEntity.noContent().build();  // Nếu không có kết quả, trả về 204 No Content
-//        }
-//        return ResponseEntity.ok(blogs);  // Trả về danh sách blog với mã 200 OK
-//    }
-
 }
