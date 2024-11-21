@@ -27,6 +27,11 @@ public class UserDto {
         this.account = account;
     }
 
+    public UserDto(String email, Account account) {
+        this.email = email;
+        this.account = account;
+    }
+
     public String getAvatar() {
         return avatar;
     }

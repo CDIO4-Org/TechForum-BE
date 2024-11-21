@@ -1,10 +1,11 @@
 package com.example.techforum.controller;
 
+import com.example.techforum.dto.AccountDto;
+import com.example.techforum.service.account.IAccountService;
 import com.example.techforum.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -12,4 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private IAccountService accountService;
+
+
 }

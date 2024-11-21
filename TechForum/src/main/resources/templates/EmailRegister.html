@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            width: 620px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .header {
+            color: white;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            position: relative;
+        }
+
+        .header img {
+            width: 100%;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+
+        .content {
+            padding: 20px;
+        }
+
+        .content h1 {
+            font-size: 24px;
+            color: #ff6600;
+            margin: 0;
+        }
+
+        .content p {
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .username-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .username-box p {
+            margin: 5px 0;
+        }
+
+        .username-box .username {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .button {
+            background-color: #ff6600;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+
+        .footer a {
+            color: #ff6600;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrap">
+
+    <div class="container">
+        <div class="header">
+            <img alt="Background image with various game characters" style="width: 100%; height: 100%;"
+                 src="https://c4.wallpaperflare.com/wallpaper/954/382/379/food-japanese-food-hd-wallpaper-preview.jpg" />
+
+        </div>
+        <div class="content">
+            <h1>
+                Chào Mừng Tới DaNaFood
+            </h1>
+            <div class="username-box">
+                <p>
+                    Kính gửi:
+                </p>
+                <p class="username" th:text="${name}">
+
+                </p>
+                <p>
+                    Xin chúc mừng! Tài khoản của bạn đã được đăng ký thành công trên DaNaFood.
+                    Bạn đã sẵn sàng khám phá hàng ngàn món ăn ngon và tận hưởng dịch vụ giao hàng tiện lợi tại Đà
+                    Nẵng.
+                </p>
+                <br>
+                <p>
+                    Hãy đăng nhập vào tài khoản của bạn và bắt đầu đặt món ngay hôm nay!
+                </p>
+                <a class="button" href="#" style="text-decoration: none; color: #f9f9f9">
+                    Đăng Nhập ngay
+                </a>
+            </div>
+        </div>
+        <div class="logo">
+            <img alt="Dana Food logo" width="207" height="107" src="https://firebasestorage.googleapis.com/v0/b/danafood-54ff1.appspot.com/o/logo.jpg?alt=media&token=9c60a7b6-8092-48aa-b08d-0916dd9eb453" />
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

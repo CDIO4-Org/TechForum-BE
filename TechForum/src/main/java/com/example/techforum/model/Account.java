@@ -25,6 +25,13 @@ public class Account {
     public Account() {
     }
 
+    public Account(Set<Role> roles, String password, String accountName) {
+        this.roles = roles;
+        this.password = password;
+        this.accountName = accountName;
+        this.status = false;
+    }
+
     public Integer getId() {
         return id;
     }

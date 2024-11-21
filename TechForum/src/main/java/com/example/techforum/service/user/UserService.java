@@ -8,4 +8,9 @@ import com.example.techforum.repository.IUserRepo;
 public class UserService implements IUserService{
     @Autowired
     private IUserRepo userRepo;
+
+    @Override
+    public Boolean existsByEmail(String email) {
+        return userRepo.existsByEmail(email);
+    }
 }
