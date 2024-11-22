@@ -1,5 +1,6 @@
 package com.example.techforum.model;
 
+import com.example.techforum.dto.CommentDto;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private LocalDateTime date;
     @Column(columnDefinition = "varchar(255)")
     private String content;
@@ -19,14 +20,27 @@ public class Comments {
     @JoinColumn(name = "user_id")
     private Users user;
 
-    public Comments() {
+    @PrePersist
+    protected void beginDate() {
+        this.date = LocalDateTime.now();
     }
 
-    public Integer getId() {
+    public Comments() {
+
+    }
+
+    public Comments(CommentDto cmt) {
+        this.date = cmt.getDate();
+        this.content = cmt.getContent();
+        this.blog = cmt.getBlog();
+        this.user = cmt.getUser();
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

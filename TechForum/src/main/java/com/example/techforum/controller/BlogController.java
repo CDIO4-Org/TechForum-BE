@@ -1,8 +1,10 @@
 package com.example.techforum.controller;
 
 import com.example.techforum.dto.BlogDto;
+import com.example.techforum.dto.CommentDto;
 import com.example.techforum.model.Blogs;
 import com.example.techforum.service.blog.IBlogService;
+import com.example.techforum.service.comment.ICommentService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ import java.util.List;
 public class BlogController {
     @Autowired
     private IBlogService blogService;
+
+    @Autowired
+    private ICommentService commentService;
 
     @GetMapping("/nonActivedBlogs")
     public ResponseEntity<Page<BlogDto>> getBlogNonActived(
@@ -94,6 +99,7 @@ public class BlogController {
     public ResponseEntity<BlogDto> getBlogById(@PathVariable("id") long id) {
         try {
             BlogDto blog = blogService.findOne(id);
+
             return ResponseEntity.ok(blog);  // Trả về blog nếu tìm thấy
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);  // Nếu không tìm thấy, trả về lỗi 404

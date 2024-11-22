@@ -1,18 +1,22 @@
 package com.example.techforum.dto;
 
 import com.example.techforum.model.Blogs;
+import com.example.techforum.model.Comments;
 import com.example.techforum.model.Users;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
 public class CommentDto {
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime date;
     private String content;
     private Blogs blog;
     private Users user;
-    public CommentDto() {}
+    public CommentDto(Comments comments) {}
 
-
+    public CommentDto() {
+    }
 
     public LocalDateTime getDate() {
         return date;
