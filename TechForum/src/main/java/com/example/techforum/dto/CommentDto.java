@@ -4,16 +4,27 @@ import com.example.techforum.model.Blogs;
 import com.example.techforum.model.Comments;
 import com.example.techforum.model.Users;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
 public class CommentDto {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime date;
+    @NotBlank(message = "Not Blank")
+    @NotNull(message = "not null")
     private String content;
+    @NotNull(message = "not null")
     private Blogs blog;
+    @NotNull(message = "not null")
     private Users user;
-    public CommentDto(Comments comments) {}
+    public CommentDto(Comments comments) {
+        this.date = comments.getDate();
+        this.content = comments.getContent();
+        this.blog = comments.getBlog();
+        this.user = comments.getUser();
+    }
 
     public CommentDto() {
     }
