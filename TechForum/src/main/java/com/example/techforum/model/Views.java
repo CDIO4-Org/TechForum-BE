@@ -6,8 +6,7 @@ import jakarta.persistence.*;
 public class Views {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Integer amount;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "blog_id")
     private Blogs blog;
@@ -18,20 +17,12 @@ public class Views {
     public Views() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
     }
 
     public Blogs getBlog() {
