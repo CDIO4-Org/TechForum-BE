@@ -1,11 +1,12 @@
 package com.example.techforum.dto;
 
 import com.example.techforum.model.Account;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 
 public class UserDto {
-    private String avatar;
+    private MultipartFile avatar;
     private String firstName;
     private String lastName;
     private String email;
@@ -14,9 +15,12 @@ public class UserDto {
     private LocalDate birthDate;
     private String address;
     private Account account;
+    private String avaUrl;
 
-    public UserDto(String avatar, String firstName, String lastName, String email, Integer gender, String phoneNumber, LocalDate birthDate, String address, Account account) {
-        this.avatar = avatar;
+    public UserDto() {
+    }
+
+    public UserDto(String firstName, String avaUrl, String lastName, String email, Integer gender, String phoneNumber, LocalDate birthDate, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -24,7 +28,15 @@ public class UserDto {
         this.phoneNumber = phoneNumber;
         this.birthDate = birthDate;
         this.address = address;
-        this.account = account;
+        this.avaUrl = avaUrl;
+    }
+
+    public String getAvaUrl() {
+        return avaUrl;
+    }
+
+    public void setAvaUrl(String avaUrl) {
+        this.avaUrl = avaUrl;
     }
 
     public UserDto(String email, Account account) {
@@ -32,11 +44,11 @@ public class UserDto {
         this.account = account;
     }
 
-    public String getAvatar() {
+    public MultipartFile getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(MultipartFile avatar) {
         this.avatar = avatar;
     }
 
