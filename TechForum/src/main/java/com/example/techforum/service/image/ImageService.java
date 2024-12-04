@@ -1,5 +1,8 @@
 package com.example.techforum.service.image;
 
+import com.example.techforum.dto.BlogDto;
+import com.example.techforum.dto.ImageDto;
+import com.example.techforum.model.Blogs;
 import com.example.techforum.model.Images;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +24,12 @@ public class ImageService implements IImageService{
     public List<Images> findAllImages() {
         return iImageRepo.findAll();
     }
+
+    @Override
+    public List<ImageDto> getImagesByBlogId(Long blogId) {
+        return iImageRepo.findImageDtosByBlogId(blogId);
+
+    }
+
 
 }
