@@ -1,5 +1,6 @@
 package com.example.techforum.model;
 
+import com.example.techforum.dto.ReportDto;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -19,7 +20,17 @@ public class Reports {
     @JoinColumn(name = "blog_id")
     private Blogs blog;
 
+    public Reports(ReportDto reportDTO) {
+    }
+
     public Reports() {
+    }
+
+    public Reports(String content, LocalDate reportDate, Users user, Blogs blog) {
+        this.content = content;
+        this.reportDate = reportDate;
+        this.user = user;
+        this.blog = blog;
     }
 
     public Integer getId() {

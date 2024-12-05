@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 @CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
 public class AccountController {
     @Autowired
