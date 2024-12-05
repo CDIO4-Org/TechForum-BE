@@ -5,9 +5,12 @@ import com.example.techforum.model.Likes;
 import com.example.techforum.repository.IBlogRepo;
 import com.example.techforum.repository.IUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.example.techforum.repository.ILikesRepo;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,6 +21,11 @@ public class LikesService implements ILikesService{
     private IBlogRepo blogRepo;
     @Autowired
     private IUserRepo userRepo;
+
+    @Override
+    public Page<Likes> findAll(Long id, Pageable pageable) {
+        return likesRepo.findAllByUserId(id,pageable);
+    }
 
     @Override
     public String toggleLike(Long blogId, Long userId) {

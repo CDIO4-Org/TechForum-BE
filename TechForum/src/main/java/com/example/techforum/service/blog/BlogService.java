@@ -67,7 +67,6 @@ public class BlogService implements IBlogService{
                 .collect(Collectors.toList());
     }
 
-
     @Override
     public Blogs addNewBlog(BlogDto blog) {
         return iBlogRepository.save(dtoToObject(blog));
