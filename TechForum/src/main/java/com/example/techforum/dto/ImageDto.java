@@ -9,7 +9,14 @@ public class ImageDto {
     public ImageDto() {
     }
 
+    public ImageDto(Blogs blog) {
+        this.blog = blog;
+    }
 
+    public ImageDto(String nameImg, Blogs blog) {
+        this.nameImg = nameImg;
+        this.blog = blog;
+    }
 
     public String getNameImg() {
         return nameImg;

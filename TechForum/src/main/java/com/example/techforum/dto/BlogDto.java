@@ -13,12 +13,11 @@ import java.time.LocalDateTime;
 
 public class BlogDto {
     private Long id;
-    @NotBlank(message = "Title cannot be empty")
-    @Size(min = 3, max = 255, message = "Title must be between 3 and 255 characters")
+//    @NotBlank(message = "Title cannot be empty")
+//    @Size(min = 3, max = 255, message = "Title must be between 3 and 255 characters")
 //    @NotBlank(message = "Title cannot be empty")
 //    @Size(min = 3, max = 255, message = "Title must be between 3 and 255 characters")
     private String title;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime beginDate;
 //    @NotBlank(message = "Content cannot be empty")
 //    @Size(min = 3, message = "Content must be at least 3 characters")

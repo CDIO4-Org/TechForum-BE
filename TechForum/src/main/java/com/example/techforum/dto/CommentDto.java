@@ -10,7 +10,6 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class CommentDto {
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime date;
     @NotBlank(message = "Not Blank")
     @NotNull(message = "not null")

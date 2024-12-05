@@ -30,7 +30,7 @@ public class Comments {
     }
 
     public Comments(CommentDto cmt) {
-        this.date = cmt.getDate();
+
         this.content = cmt.getContent();
         this.blog = cmt.getBlog();
         this.user = cmt.getUser();
