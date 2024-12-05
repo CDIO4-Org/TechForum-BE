@@ -95,6 +95,14 @@ public class BlogController {
         }
         return ResponseEntity.ok(blogs);  // Trả về danh sách blog với mã 200 OK
     }
+    @GetMapping("/findByCategory")
+    public ResponseEntity<List<BlogDto>> getBlogsByCategory(@RequestParam Long cateId) {
+        List<BlogDto> blogs = blogService.findByCategoryId(cateId);
+        if (blogs.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(blogs);
+    }
     @GetMapping("/getByid/{id}")
     public ResponseEntity<BlogDto> getBlogById(@PathVariable("id") long id) {
         try {

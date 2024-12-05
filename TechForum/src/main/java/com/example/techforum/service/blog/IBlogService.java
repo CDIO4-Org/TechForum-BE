@@ -21,5 +21,5 @@ public interface IBlogService {
     List<BlogDto> findByTitle(String title);
     Integer getLastInsert();
     Blogs findById(long id);
-
+    List<BlogDto> findByCategoryId(long id);
 }

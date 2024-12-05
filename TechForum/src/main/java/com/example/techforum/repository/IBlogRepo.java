@@ -2,6 +2,7 @@ package com.example.techforum.repository;
 
 import com.example.techforum.dto.BlogDto;
 import com.example.techforum.model.Blogs;
+import com.example.techforum.model.Categories;
 import com.example.techforum.model.Users;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +29,6 @@ public interface IBlogRepo extends JpaRepository<Blogs, Long> {
 
     @Query(value = "select * from blogs where id = :id", nativeQuery = true)
     Blogs findObject(@Param("id") long id);
-
-
+    @Query("SELECT b FROM Blogs b WHERE b.category = :categories and b.status = true")
+    List<BlogDto> findAllByCategory(@Param("categories") Categories categories);
 }
