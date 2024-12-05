@@ -42,4 +42,8 @@ public class CommentController {
         commentService.delete(id);
         return new ResponseEntity<>("Xoa thanh cong",HttpStatus.OK);
     }
+    @GetMapping("/countComment")
+    public int getLikeCount(@RequestParam Long blogId) {
+        return commentService.getCommentCount(blogId);
+    }
 }

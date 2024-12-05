@@ -9,4 +9,6 @@ public interface ICommentService {
     List<CommentDto> findAllCommentByBlogId(Long id);
     Comments save(CommentDto commentBlog);
     void delete(Long id);
+    int getCommentCount(Long blogId);
+
 }

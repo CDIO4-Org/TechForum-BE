@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface ICommentRepo extends JpaRepository<Comments, Long> {
     List<Comments> findAllByBlogId(Long id);
+    int countByBlogId(Long postId);
+
 }
