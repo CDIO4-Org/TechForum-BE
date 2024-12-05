@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface IBlogStorageRepo extends JpaRepository<BlogStorage, Long> {
-    Optional<Likes> findBlogStoragesByBlogIdAndUserId(Long blogId, Long userId);
+    Optional<BlogStorage> findBlogStoragesByBlogIdAndUserId(Long blogId, Long userId);
     int countByBlogId(Long blogId);
     Page<BlogStorage> findAllByUserId(Long userId, Pageable pageable);
 

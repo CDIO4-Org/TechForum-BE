@@ -10,7 +10,8 @@ import java.util.List;
 
 public interface IBlogStorageService {
     Page<BlogStorage> findAllByUserId(Long id,Pageable pageable);
-    BlogStorage save(BlogStorage blogStorage);
+    String toggleBookMark(Long blogId, Long userId);
     void delete(Long id);
     int getCount(Long blogId);
+    Boolean isBlogBookMarkedByUser(Long blogId, Long userId);
 }

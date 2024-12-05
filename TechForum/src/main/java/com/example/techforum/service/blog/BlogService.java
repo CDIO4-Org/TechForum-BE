@@ -85,7 +85,11 @@ public class BlogService implements IBlogService{
 
     @Override
     public void delete(long id) {
-        iBlogRepository.deleteById(id);
+        if (iBlogRepository.existsById(id)){
+            iBlogRepository.deleteById(id);
+        }else {
+            throw new EntityNotFoundException("Blog not found with id: " + id);
+        }
     }
 
 
