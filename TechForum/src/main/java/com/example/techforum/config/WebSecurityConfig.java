@@ -50,7 +50,7 @@ public class WebSecurityConfig {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(jwtEntryPoint).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().requestMatchers("api/account/**", "api/account/login").permitAll()
+                .authorizeRequests().requestMatchers("api/auth/account/**", "api/account/login").permitAll()
                 .anyRequest().authenticated();
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
