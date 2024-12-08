@@ -1,5 +1,6 @@
 package com.example.techforum.model;
 
+import com.example.techforum.dto.CategoryDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +14,11 @@ public class Categories {
     private String name;
 
     public Categories() {
+    }
+
+    public Categories(CategoryDto categoryDto) {
+        this.id = categoryDto.getId();
+        this.name = categoryDto.getName();
     }
 
     public Integer getId() {

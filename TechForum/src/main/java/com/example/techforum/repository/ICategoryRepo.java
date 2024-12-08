@@ -12,4 +12,5 @@ public interface ICategoryRepo extends JpaRepository<Categories, Integer> {
     @Query(value = "select * from categories", nativeQuery = true)
     List<Categories> getAllCategories();
     Categories findById(Long id);
+
 }
