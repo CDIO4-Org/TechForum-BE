@@ -28,9 +28,8 @@ public class Comments {
     public Comments() {
 
     }
-
     public Comments(CommentDto cmt) {
-
+        this.id = cmt.getId();
         this.content = cmt.getContent();
         this.blog = cmt.getBlog();
         this.user = cmt.getUser();

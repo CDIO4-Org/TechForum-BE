@@ -10,6 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class CommentDto {
+    private Long id;
     private LocalDateTime date;
     @NotBlank(message = "Not Blank")
     @NotNull(message = "not null")
@@ -18,7 +19,19 @@ public class CommentDto {
     private Blogs blog;
     @NotNull(message = "not null")
     private Users user;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+
     public CommentDto(Comments comments) {
+        this.id = comments.getId();
         this.date = comments.getDate();
         this.content = comments.getContent();
         this.blog = comments.getBlog();
