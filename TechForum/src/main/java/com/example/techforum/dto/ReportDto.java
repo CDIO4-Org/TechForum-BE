@@ -3,10 +3,12 @@ package com.example.techforum.dto;
 import com.example.techforum.model.Blogs;
 import com.example.techforum.model.Users;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 
 public class ReportDto {
+    @NotBlank(message = "Content cannot be empty")
     private String content;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDate reportDate;
