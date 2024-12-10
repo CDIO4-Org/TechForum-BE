@@ -27,7 +27,13 @@ public class Users {
     @JoinColumn(name = "account_id")
     private Account account;
 
+    public Users(String email, Account account) {
+        this.email = email;
+        this.account = account;
+    }
+
     public Users() {
+
     }
 
     public Integer getId() {
