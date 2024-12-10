@@ -18,11 +18,11 @@ public class LikesController {
     private ILikesService likesService;
 
     @GetMapping("/getAll")
-    public ResponseEntity<Page<Likes>> getBlogNonActived(
+    public ResponseEntity<Page<Likes>> getBlogLiked(
             @RequestParam Long userId,
             @RequestParam(defaultValue = "0") int page, // Trang bắt đầu, mặc định là 0
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "id,asc") String[] sort
+            @RequestParam(defaultValue = "id,desc") String[] sort
     ) {
         Sort.Direction direction = Sort.Direction.fromString(sort[1]);
         Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort[0]));

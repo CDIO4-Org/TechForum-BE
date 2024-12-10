@@ -40,13 +40,13 @@ public class BlogStorageService implements IBlogStorageService {
 
         if (existingLike.isPresent()) {
             blogStorageRepo.delete(existingLike.get());
-            return "Unlike successful";
+            return "deleted blog in storage";
         } else {
             BlogStorage newBookMark = new BlogStorage();
             newBookMark.setBlog(blogRepo.findById(blogId).get());
             newBookMark.setUser(userRepo.findById(userId).get());
             blogStorageRepo.save(newBookMark);
-            return "Like successful";
+            return "add new blog to storage";
         }
     }
 
