@@ -32,7 +32,7 @@ public class BlogController {
     public ResponseEntity<Page<BlogDto>> getBlogNonActived(
             @RequestParam(defaultValue = "0") int page, // Trang bắt đầu, mặc định là 0
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "beginDate,asc") String[] sort// Kích thước mỗi trang, mặc định là 10
+            @RequestParam(defaultValue = "beginDate,desc") String[] sort// Kích thước mỗi trang, mặc định là 10
     ) {
         Sort.Direction direction = Sort.Direction.fromString(sort[1]);
         Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort[0]));

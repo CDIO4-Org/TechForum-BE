@@ -18,9 +18,10 @@ import java.util.List;
 @Transactional
 @Repository
 public interface IBlogRepo extends JpaRepository<Blogs, Long> {
+    @Query("SELECT b from Blogs b where b.status = true ORDER BY b.beginDate DESC ")
     List<Blogs> findByStatusTrue();
     Page<Blogs> findByStatus(Boolean status, Pageable pageable);
-    List<BlogDto> findByUser(Users user);
+    List<BlogDto> findByUser(@Param("user") Users user);
     @Query("SELECT b FROM Blogs b WHERE b.title LIKE %:title% and b.status = true")
     List<BlogDto> findByTitle(@Param("title") String title);
 
