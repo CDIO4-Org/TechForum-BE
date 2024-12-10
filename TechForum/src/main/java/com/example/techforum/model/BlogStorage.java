@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class BlogStorage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private LocalDate date;
     @ManyToOne
     @JoinColumn(name = "blog_id")
@@ -20,11 +20,11 @@ public class BlogStorage {
     public BlogStorage() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

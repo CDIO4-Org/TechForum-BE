@@ -24,12 +24,12 @@ public class BlogStorageService implements IBlogStorageService {
     private IUserRepo userRepo;
 
     @Override
-    public Page<BlogStorage> findAllByUserId(Long id, Pageable pageable) {
+    public Page<BlogStorage> findAllByUserId(Integer id, Pageable pageable) {
         return null;
     }
 
     @Override
-    public String toggleBookMark(Long blogId, Long userId) {
+    public String toggleBookMark(Integer blogId, Integer userId) {
         Optional<BlogStorage> existingLike = blogStorageRepo.findBlogStoragesByBlogIdAndUserId(blogId, userId);
         if (blogRepo.findById(blogId).isEmpty()){
             return "blog ko ton tai";
@@ -51,7 +51,7 @@ public class BlogStorageService implements IBlogStorageService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
         if (blogStorageRepo.existsById(id)){
             blogStorageRepo.deleteById(id);
         }else {
@@ -60,7 +60,7 @@ public class BlogStorageService implements IBlogStorageService {
     }
 
     @Override
-    public int getCount(Long blogId) {
+    public int getCount(Integer blogId) {
         if (blogRepo.findById(blogId).isEmpty()){
             throw new IllegalArgumentException( "blog ko ton tai");
         }
@@ -68,7 +68,7 @@ public class BlogStorageService implements IBlogStorageService {
     }
 
     @Override
-    public Boolean isBlogBookMarkedByUser(Long blogId, Long userId) {
+    public Boolean isBlogBookMarkedByUser(Integer blogId, Integer userId) {
         if (blogId == null || userId == null) {
             throw new IllegalArgumentException("Blog ID and User ID must not be null");
         }

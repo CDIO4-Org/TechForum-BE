@@ -12,5 +12,5 @@ public interface IImageService {
 
     List<Images> findAllImages();
 
-    List<ImageDto> getImagesByBlogId(Long blogId);
+    List<ImageDto> getImagesByBlogId(Integer blogId);
 }

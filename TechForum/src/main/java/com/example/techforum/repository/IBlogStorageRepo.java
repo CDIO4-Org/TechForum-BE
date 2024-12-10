@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface IBlogStorageRepo extends JpaRepository<BlogStorage, Long> {
-    Optional<BlogStorage> findBlogStoragesByBlogIdAndUserId(Long blogId, Long userId);
-    int countByBlogId(Long blogId);
-    Page<BlogStorage> findAllByUserId(Long userId, Pageable pageable);
+public interface IBlogStorageRepo extends JpaRepository<BlogStorage, Integer> {
+    Optional<BlogStorage> findBlogStoragesByBlogIdAndUserId(Integer blogId, Integer userId);
+    int countByBlogId(Integer blogId);
+    Page<BlogStorage> findAllByUserId(Integer userId, Pageable pageable);
 
 }

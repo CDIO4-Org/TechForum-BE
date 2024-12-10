@@ -8,8 +8,8 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface ILikesService {
-    Page<Likes> findAll(Long gid,Pageable pageable);
-    String toggleLike(Long blogId, Long userId);
-    int getLikeCount(Long blogId);
-    Boolean isBlogLikedByUser(Long blogId, Long userId);
+    Page<Likes> findAll(Integer gid,Pageable pageable);
+    String toggleLike(Integer blogId, Integer userId);
+    int getLikeCount(Integer blogId);
+    Boolean isBlogLikedByUser(Integer blogId, Integer userId);
 }

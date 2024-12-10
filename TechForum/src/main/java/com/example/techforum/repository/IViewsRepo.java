@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface IViewsRepo extends JpaRepository<Views, Long> {
-    Optional<Views> findByBlogIdAndUserId(Long blogId, Long userId);
-    int countByBlogId(Long postId);
+public interface IViewsRepo extends JpaRepository<Views, Integer> {
+    Optional<Views> findByBlogIdAndUserId(Integer blogId, Integer userId);
+    int countByBlogId(Integer postId);
 }

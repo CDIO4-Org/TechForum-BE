@@ -26,7 +26,7 @@ public class ImageService implements IImageService{
     }
 
     @Override
-    public List<ImageDto> getImagesByBlogId(Long blogId) {
+    public List<ImageDto> getImagesByBlogId(Integer blogId) {
         return iImageRepo.findImageDtosByBlogId(blogId);
 
     }

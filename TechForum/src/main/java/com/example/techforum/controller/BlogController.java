@@ -40,7 +40,7 @@ public class BlogController {
         Page<BlogDto> activeBlogs = blogService.findByStatus(false, pageable);
         return ResponseEntity.ok(activeBlogs);
     }
-    @GetMapping("/activedBlogs")
+    @GetMapping("/")
     public ResponseEntity<List<BlogDto>> getActivedBlogs() {
         try {
             List<BlogDto> blogs = blogService.getAcctivedBlogs();
@@ -59,13 +59,13 @@ public class BlogController {
     }
 
     @DeleteMapping("/deleteBlog")
-    public ResponseEntity<String> deleteBlog(@RequestParam Long id){
+    public ResponseEntity<String> deleteBlog(@RequestParam Integer id){
         blogService.delete(id);
         return new ResponseEntity<>("Xoa thanh cong",HttpStatus.OK);
     }
 
     @PutMapping("/updateBlog")
-    public ResponseEntity<String> updateBlog(@RequestParam Long id, @RequestBody  BlogDto blogDTO) {
+    public ResponseEntity<String> updateBlog(@RequestParam Integer id, @RequestBody  BlogDto blogDTO) {
         try {
             blogService.updateBlog(id, blogDTO);
             return new ResponseEntity<>("Blog updated successfully", HttpStatus.OK);
@@ -76,7 +76,7 @@ public class BlogController {
         }
     }
     @PutMapping("/acctiveBlog")
-    public ResponseEntity<String> acctiveBlog(@RequestParam Long id) {
+    public ResponseEntity<String> acctiveBlog(@RequestParam Integer id) {
         try {
             blogService.acctiveBlog(id);
 
@@ -96,7 +96,7 @@ public class BlogController {
         return ResponseEntity.ok(blogs);  // Trả về danh sách blog với mã 200 OK
     }
     @GetMapping("/findByCategory")
-    public ResponseEntity<List<BlogDto>> getBlogsByCategory(@RequestParam Long cateId) {
+    public ResponseEntity<List<BlogDto>> getBlogsByCategory(@RequestParam Integer cateId) {
         List<BlogDto> blogs = blogService.findByCategoryId(cateId);
         if (blogs.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -104,7 +104,7 @@ public class BlogController {
         return ResponseEntity.ok(blogs);
     }
     @GetMapping("/getByid/{id}")
-    public ResponseEntity<BlogDto> getBlogById(@PathVariable("id") long id) {
+    public ResponseEntity<BlogDto> getBlogById(@PathVariable("id") Integer id) {
         try {
             BlogDto blog = blogService.findOne(id);
 

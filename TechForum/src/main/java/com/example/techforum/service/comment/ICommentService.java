@@ -6,9 +6,9 @@ import com.example.techforum.model.Comments;
 import java.util.List;
 
 public interface ICommentService {
-    List<CommentDto> findAllCommentByBlogId(Long id);
+    List<CommentDto> findAllCommentByBlogId(Integer id);
     Comments save(CommentDto commentBlog);
-    void delete(Long id);
-    int getCommentCount(Long blogId);
+    void delete(Integer id);
+    int getCommentCount(Integer blogId);
 
 }

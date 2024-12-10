@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private LocalDateTime date;
     @Column(columnDefinition = "varchar(255)")
     private String content;
@@ -35,11 +35,11 @@ public class Comments {
         this.user = cmt.getUser();
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

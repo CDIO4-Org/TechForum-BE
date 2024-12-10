@@ -19,7 +19,7 @@ public class LikesController {
 
     @GetMapping("/getAll")
     public ResponseEntity<Page<Likes>> getBlogLiked(
-            @RequestParam Long userId,
+            @RequestParam Integer userId,
             @RequestParam(defaultValue = "0") int page, // Trang bắt đầu, mặc định là 0
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "id,desc") String[] sort
@@ -32,16 +32,16 @@ public class LikesController {
     }
 
     @PostMapping("/")
-    public String toggleLike(@RequestParam Long blogId, @RequestParam Long userId) {
+    public String toggleLike(@RequestParam Integer blogId, @RequestParam Integer userId) {
         return likesService.toggleLike(blogId, userId);
     }
 
     @GetMapping("/countLike")
-    public int getLikeCount(@RequestParam Long blogId) {
+    public int getLikeCount(@RequestParam Integer blogId) {
         return likesService.getLikeCount(blogId);
     }
     @GetMapping("/liked")
-    public Boolean isLiked(@RequestParam Long blogId, @RequestParam Long userId) {
+    public Boolean isLiked(@RequestParam Integer blogId, @RequestParam Integer userId) {
         return likesService.isBlogLikedByUser(blogId, userId);
     }
 }

@@ -26,7 +26,7 @@ public class BlogService implements IBlogService{
     private ICategoryRepo iCategoryRepo;
 
     @Override
-    public Blogs updateBlog(Long id,@Valid BlogDto updatedBlog) {
+    public Blogs updateBlog(Integer id,@Valid BlogDto updatedBlog) {
         if (iBlogRepository.existsById(id)) {
             Blogs blog = iBlogRepository.findById(id).get();
             blog.setCategory(updatedBlog.getCategory());
@@ -41,7 +41,7 @@ public class BlogService implements IBlogService{
     }
 
     @Override
-    public void acctiveBlog(Long id) {
+    public void acctiveBlog(Integer id) {
         Blogs blog = iBlogRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Blog with id " + id + " not found"));
         blog.setStatus(true);
         iBlogRepository.save(blog);
@@ -75,7 +75,7 @@ public class BlogService implements IBlogService{
 
 
     @Override
-    public BlogDto findOne(long id) {
+    public BlogDto findOne(Integer id) {
         Blogs blog = iBlogRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Blog not found with id: " + id));
 
@@ -84,7 +84,7 @@ public class BlogService implements IBlogService{
 
 
     @Override
-    public void delete(long id) {
+    public void delete(Integer id) {
         if (iBlogRepository.existsById(id)){
             iBlogRepository.deleteById(id);
         }else {
@@ -107,12 +107,12 @@ public class BlogService implements IBlogService{
 
 
     @Override
-    public Blogs findById(long id) {
+    public Blogs findById(Integer id) {
         return iBlogRepository.findObject(id);
     }
     @Override
-    public List<BlogDto> findByCategoryId(long id) {
-        Categories categories = iCategoryRepo.findById(id);
+    public List<BlogDto> findByCategoryId(Integer id) {
+        Categories categories = iCategoryRepo.findById(id).get();
         return iBlogRepository.findAllByCategory(categories);
     }
 

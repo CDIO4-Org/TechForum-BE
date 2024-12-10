@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Likes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private Integer amount;
     @ManyToOne
     @JoinColumn(name = "blog_id")
@@ -18,11 +18,11 @@ public class Likes {
     public Likes() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

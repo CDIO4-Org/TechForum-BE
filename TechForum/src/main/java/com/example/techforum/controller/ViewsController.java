@@ -11,12 +11,12 @@ public class ViewsController {
     @Autowired
     private IViewsService viewsService;
     @PostMapping("/")
-    public String toggleView(@RequestParam Long blogId, @RequestParam Long userId) {
+    public String toggleView(@RequestParam Integer blogId, @RequestParam Integer userId) {
         return viewsService.toggleView(blogId, userId);
     }
 
     @GetMapping("/countView")
-    public int getLikeCount(@RequestParam Long blogId) {
+    public int getLikeCount(@RequestParam Integer blogId) {
         return viewsService.getViewCount(blogId);
     }
 }

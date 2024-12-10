@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 @Transactional
 @Repository
-public interface IBlogRepo extends JpaRepository<Blogs, Long> {
+public interface IBlogRepo extends JpaRepository<Blogs, Integer> {
     @Query("SELECT b from Blogs b where b.status = true ORDER BY b.beginDate DESC ")
     List<Blogs> findByStatusTrue();
     Page<Blogs> findByStatus(Boolean status, Pageable pageable);
@@ -29,7 +29,7 @@ public interface IBlogRepo extends JpaRepository<Blogs, Long> {
     Integer getLastInsert();
 
     @Query(value = "select * from blogs where id = :id", nativeQuery = true)
-    Blogs findObject(@Param("id") long id);
+    Blogs findObject(@Param("id") Integer id);
     @Query("SELECT b FROM Blogs b WHERE b.category = :categories and b.status = true")
     List<BlogDto> findAllByCategory(@Param("categories") Categories categories);
 }

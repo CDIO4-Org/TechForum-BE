@@ -21,7 +21,7 @@ public class ViewsService implements IViewsService{
     private IUserRepo userRepo;
 
     @Override
-    public String toggleView(Long blogId, Long userId) {
+    public String toggleView(Integer blogId, Integer userId) {
         Optional<Views> existingView = viewsRepo.findByBlogIdAndUserId(blogId, userId);
         if (blogRepo.findById(blogId).isEmpty()){
             return "blog ko ton tai";
@@ -42,7 +42,7 @@ public class ViewsService implements IViewsService{
     }
 
     @Override
-    public int getViewCount(Long blogId) {
+    public int getViewCount(Integer blogId) {
         if (blogRepo.findById(blogId).isEmpty()){
             throw new IllegalArgumentException( "blog ko ton tai");
         }

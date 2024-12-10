@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Column(columnDefinition = "LONGTEXT")
     private String avatar;
     @Column(columnDefinition = "varchar(50)")
@@ -30,11 +30,11 @@ public class Users {
     public Users() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

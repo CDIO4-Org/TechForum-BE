@@ -18,7 +18,7 @@ public class CommentService implements ICommentService{
     private IBlogRepo blogRepo;
 
     @Override
-    public List<CommentDto> findAllCommentByBlogId(Long id) {
+    public List<CommentDto> findAllCommentByBlogId(Integer id) {
         List<Comments> cmt = commentRepo.findAllByBlogId(id);
         return cmt.stream()
                 .map(comments -> new CommentDto(comments))
@@ -31,12 +31,12 @@ public class CommentService implements ICommentService{
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
         commentRepo.deleteById(id);
     }
 
     @Override
-    public int getCommentCount(Long blogId) {
+    public int getCommentCount(Integer blogId) {
         if (blogRepo.findById(blogId).isEmpty()){
             throw new IllegalArgumentException( "blog ko ton tai");
         }

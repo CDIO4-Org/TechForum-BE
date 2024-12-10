@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ILikesRepo extends CrudRepository<Likes, Long> {
-    Optional<Likes> findByBlogIdAndUserId(Long blogId, Long userId);
-    int countByBlogId(Long postId);
-    Page<Likes> findAllByUserId(Long userId,Pageable pageable);
+public interface ILikesRepo extends CrudRepository<Likes, Integer> {
+    Optional<Likes> findByBlogIdAndUserId(Integer blogId, Integer userId);
+    int countByBlogId(Integer postId);
+    Page<Likes> findAllByUserId(Integer userId,Pageable pageable);
 
 }

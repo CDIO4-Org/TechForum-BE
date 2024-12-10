@@ -19,7 +19,7 @@ public class BlogStorageController {
     private IBlogStorageService blogStorageService;
     @GetMapping("/getAll")
     public ResponseEntity<Page<BlogStorage>> getBlogNonActived(
-            @RequestParam Long userId,
+            @RequestParam Integer userId,
             @RequestParam(defaultValue = "0") int page, // Trang bắt đầu, mặc định là 0
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "id,desc") String[] sort
@@ -32,16 +32,16 @@ public class BlogStorageController {
     }
 
     @PostMapping("/")
-    public String toggleBookmark(@RequestParam Long blogId, @RequestParam Long userId) {
+    public String toggleBookmark(@RequestParam Integer blogId, @RequestParam Integer userId) {
         return blogStorageService.toggleBookMark(blogId, userId);
     }
 
     @GetMapping("/count")
-    public int getBookmarkCount(@RequestParam Long blogId) {
+    public int getBookmarkCount(@RequestParam Integer blogId) {
         return blogStorageService.getCount(blogId);
     }
     @GetMapping("/checkExist")
-    public Boolean isBookmark(@RequestParam Long blogId, @RequestParam Long userId) {
+    public Boolean isBookmark(@RequestParam Integer blogId, @RequestParam Integer userId) {
         return blogStorageService.isBlogBookMarkedByUser(blogId, userId);
     }
 }

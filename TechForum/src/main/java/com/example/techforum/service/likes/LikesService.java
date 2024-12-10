@@ -23,12 +23,12 @@ public class LikesService implements ILikesService{
     private IUserRepo userRepo;
 
     @Override
-    public Page<Likes> findAll(Long id, Pageable pageable) {
+    public Page<Likes> findAll(Integer id, Pageable pageable) {
         return likesRepo.findAllByUserId(id,pageable);
     }
 
     @Override
-    public String toggleLike(Long blogId, Long userId) {
+    public String toggleLike(Integer blogId, Integer userId) {
         Optional<Likes> existingLike = likesRepo.findByBlogIdAndUserId(blogId, userId);
         if (blogRepo.findById(blogId).isEmpty()){
             return "blog ko ton tai";
@@ -52,7 +52,7 @@ public class LikesService implements ILikesService{
     }
 
     @Override
-    public int getLikeCount(Long blogId) {
+    public int getLikeCount(Integer blogId) {
         if (blogRepo.findById(blogId).isEmpty()){
             throw new IllegalArgumentException( "blog ko ton tai");
         }
@@ -60,7 +60,7 @@ public class LikesService implements ILikesService{
     }
 
     @Override
-    public Boolean isBlogLikedByUser(Long blogId, Long userId) {
+    public Boolean isBlogLikedByUser(Integer blogId, Integer userId) {
         if (blogId == null || userId == null) {
             throw new IllegalArgumentException("Blog ID and User ID must not be null");
         }

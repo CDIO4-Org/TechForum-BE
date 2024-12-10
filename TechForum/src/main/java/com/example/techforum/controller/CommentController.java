@@ -20,7 +20,7 @@ public class CommentController {
     @Autowired
     private ICommentService commentService;
     @GetMapping("/findAllByIdBlog")
-    public ResponseEntity<List<CommentDto>> findAllByIdBlog(@RequestParam Long id) {
+    public ResponseEntity<List<CommentDto>> findAllByIdBlog(@RequestParam Integer id) {
         try {
             List<CommentDto> cmt = commentService.findAllCommentByBlogId(id);
             return ResponseEntity.ok(cmt); // HTTP 200
@@ -38,12 +38,12 @@ public class CommentController {
     }
 
     @DeleteMapping("/deleteComment")
-    public ResponseEntity<String> deleteComment(@RequestParam Long id){
+    public ResponseEntity<String> deleteComment(@RequestParam Integer id){
         commentService.delete(id);
         return new ResponseEntity<>("Xoa thanh cong",HttpStatus.OK);
     }
     @GetMapping("/countComment")
-    public int getLikeCount(@RequestParam Long blogId) {
+    public int getLikeCount(@RequestParam Integer blogId) {
         return commentService.getCommentCount(blogId);
     }
 }

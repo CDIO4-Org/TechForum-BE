@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ICommentRepo extends JpaRepository<Comments, Long> {
+public interface ICommentRepo extends JpaRepository<Comments, Integer> {
     @Query("SELECT c FROM Comments c WHERE c.blog.id = :id ORDER BY c.date DESC ")
-    List<Comments> findAllByBlogId(@Param("id") Long id);
-    int countByBlogId(Long postId);
+    List<Comments> findAllByBlogId(@Param("id") Integer id);
+    int countByBlogId(Integer postId);
 
 }

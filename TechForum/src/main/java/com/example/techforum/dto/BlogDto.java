@@ -12,7 +12,7 @@ import org.hibernate.annotations.ColumnDefault;
 import java.time.LocalDateTime;
 
 public class BlogDto {
-    private Long id;
+    private Integer id;
 //    @NotBlank(message = "Title cannot be empty")
 //    @Size(min = 3, max = 255, message = "Title must be between 3 and 255 characters")
 //    @NotBlank(message = "Title cannot be empty")
@@ -49,12 +49,11 @@ public class BlogDto {
         this.status = blog.getStatus();
         this.beginDate = blog.getBeginDate();
     }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

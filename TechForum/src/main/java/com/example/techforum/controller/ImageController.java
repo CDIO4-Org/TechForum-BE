@@ -40,7 +40,7 @@ public class ImageController {
     }
 
     @GetMapping("/findByIdBlogImg/{id}")
-    public List<ImageDto> getImagesByBlogId(@PathVariable Long id) {
+    public List<ImageDto> getImagesByBlogId(@PathVariable Integer id) {
         return imageServiceS.getImagesByBlogId(id);
     }
 
