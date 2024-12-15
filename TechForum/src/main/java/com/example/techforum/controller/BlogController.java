@@ -28,6 +28,18 @@ public class BlogController {
     @Autowired
     private ICommentService commentService;
 
+    @GetMapping("/getAllBlogs")
+    public ResponseEntity<Page<BlogDto>> getAllBlogs(
+            @RequestParam(defaultValue = "0") int page, // Trang bắt đầu, mặc định là 0
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "beginDate,desc") String[] sort// Kích thước mỗi trang, mặc định là 10
+    ) {
+        Sort.Direction direction = Sort.Direction.fromString(sort[1]);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort[0]));
+
+        Page<BlogDto> Blogs = blogService.getAllBlog(pageable);
+        return ResponseEntity.ok(Blogs);
+    }
     @GetMapping("/nonActivedBlogs")
     public ResponseEntity<Page<BlogDto>> getBlogNonActived(
             @RequestParam(defaultValue = "0") int page, // Trang bắt đầu, mặc định là 0
@@ -95,8 +107,8 @@ public class BlogController {
         }
         return ResponseEntity.ok(blogs);  // Trả về danh sách blog với mã 200 OK
     }
-    @GetMapping("/findByCategory")
-    public ResponseEntity<List<BlogDto>> getBlogsByCategory(@RequestParam Integer cateId) {
+    @GetMapping("/findByCategoryId/{cateId}")
+    public ResponseEntity<List<BlogDto>> getBlogsByCategoryId(@PathVariable("cateId") Integer cateId) {
         List<BlogDto> blogs = blogService.findByCategoryId(cateId);
         if (blogs.isEmpty()) {
             return ResponseEntity.noContent().build();
