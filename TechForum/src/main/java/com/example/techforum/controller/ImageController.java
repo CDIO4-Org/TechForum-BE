@@ -1,10 +1,12 @@
 package com.example.techforum.controller;
 
+import com.example.techforum.dto.BlogDto;
 import com.example.techforum.dto.ImageDto;
 import com.example.techforum.model.Categories;
 import com.example.techforum.model.Images;
 import com.example.techforum.service.image.ImageProcessingService;
 import com.example.techforum.service.image.ImageService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,7 @@ public class ImageController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/getAllImag")
+    @GetMapping("/getAllImg")
     public ResponseEntity<List<Images>> getAllImg(){
         List<Images> imgList = imageServiceS.findAllImages();
         if (imgList.isEmpty()) {
@@ -36,4 +38,10 @@ public class ImageController {
         }
         return new ResponseEntity<List<Images>>(imgList, HttpStatus.OK);
     }
+
+    @GetMapping("/findByIdBlogImg/{id}")
+    public List<ImageDto> getImagesByBlogId(@PathVariable Integer id) {
+        return imageServiceS.getImagesByBlogId(id);
+    }
+
 }
