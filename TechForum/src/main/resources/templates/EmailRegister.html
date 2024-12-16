@@ -3,134 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Đăng ký thành công</title>
     <style>
-        .wrap {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+        /* Reset mặc định */
+        body,
+        table,
+        td,
+        a {
+            text-size-adjust: 100%;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            line-height: 100%;
+            text-decoration: none;
         }
 
-        .container {
-            background-color: white;
-            width: 620px;
+        body {
+            width: 100% !important;
+            height: 100% !important;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse !important;
+        }
+
+        img {
+            border: 0;
+            max-width: 100%;
+        }
+
+        /* Thiết kế chính */
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .email-header {
+            background-color: #F48023;
+            color: #ffffff;
             text-align: center;
             padding: 20px;
         }
 
-        .header {
-            color: white;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            position: relative;
-        }
-
-        .header img {
-            width: 100%;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-        }
-
-
-        .content {
-            padding: 20px;
-        }
-
-        .content h1 {
-            font-size: 24px;
-            color: #ff6600;
+        .email-header h1 {
             margin: 0;
+            font-size: 24px;
         }
 
-        .content p {
-            color: #666;
+        .email-body {
+            padding: 20px;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .email-body p {
             margin: 10px 0;
         }
 
-        .username-box {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
+        .email-footer {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            color: #888888;
         }
 
-        .username-box p {
-            margin: 5px 0;
-        }
-
-        .username-box .username {
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .button {
-            background-color: #ff6600;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .email-footer a {
+            color: #F48023;
             text-decoration: none;
-            display: inline-block;
-            margin: 20px 0;
         }
 
+        /* Responsive */
+        @media screen and (max-width: 600px) {
+            .email-header h1 {
+                font-size: 20px;
+            }
 
-        .footer a {
-            color: #ff6600;
-            text-decoration: none;
+            .email-body {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 
 <body>
-<div class="wrap">
+<table role="presentation" width="100%">
+    <tr>
+        <td align="center">
+            <div class="email-container">
+                <!-- Header -->
+                <div class="email-header">
+                    <h2>ĐĂNG KÝ THÀNH CÔNG!</h2>
+                </div>
 
-    <div class="container">
-        <div class="header">
-            <img alt="Background image with various game characters" style="width: 100%; height: 100%;"
-                 src="https://c4.wallpaperflare.com/wallpaper/954/382/379/food-japanese-food-hd-wallpaper-preview.jpg" />
+                <!-- Body -->
+                <div class="email-body">
+                    <p>Chào <div th:text="${name}"></div></p>
+                    <p>Cảm ơn bạn đã đăng ký tài khoản trên diễn đàn công nghệ của chúng tôi. Tài khoản của bạn đã được kích
+                        hoạt thành công!</p>
+                    <p>Bạn có thể bắt đầu khám phá các chủ đề thú vị, đặt câu hỏi và thảo luận ngay bây giờ.</p>
+                    <p><a href="[link diễn đàn]"
+                          style="background: #F48023; color: #ffffff; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Truy
+                        cập diễn đàn</a></p>
+                </div>
 
-        </div>
-        <div class="content">
-            <h1>
-                Chào Mừng Tới DaNaFood
-            </h1>
-            <div class="username-box">
-                <p>
-                    Kính gửi:
-                </p>
-                <p class="username" th:text="${name}">
-
-                </p>
-                <p>
-                    Xin chúc mừng! Tài khoản của bạn đã được đăng ký thành công trên DaNaFood.
-                    Bạn đã sẵn sàng khám phá hàng ngàn món ăn ngon và tận hưởng dịch vụ giao hàng tiện lợi tại Đà
-                    Nẵng.
-                </p>
-                <br>
-                <p>
-                    Hãy đăng nhập vào tài khoản của bạn và bắt đầu đặt món ngay hôm nay!
-                </p>
-                <a class="button" href="#" style="text-decoration: none; color: #f9f9f9">
-                    Đăng Nhập ngay
-                </a>
+                <!-- Footer -->
+                <div class="email-footer">
+                    <p>Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ chúng tôi qua <a
+                            href="mailto:iamdev2k3@gmail.com">iamdev2k3@gmail.com</a>.</p>
+                    <p>&copy; 2024 Diễn đàn Công nghệ. All rights reserved.</p>
+                </div>
             </div>
-        </div>
-        <div class="logo">
-            <img alt="Dana Food logo" width="207" height="107" src="https://firebasestorage.googleapis.com/v0/b/danafood-54ff1.appspot.com/o/logo.jpg?alt=media&token=9c60a7b6-8092-48aa-b08d-0916dd9eb453" />
-        </div>
-    </div>
-</div>
-
+        </td>
+    </tr>
+</table>
 </body>
 
 </html>

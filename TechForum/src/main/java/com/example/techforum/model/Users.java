@@ -1,6 +1,7 @@
 package com.example.techforum.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
 
@@ -27,9 +28,10 @@ public class Users {
     @JoinColumn(name = "account_id")
     private Account account;
 
-    public Users(String email, Account account) {
+    public Users(String email, Account account, String avatar) {
         this.email = email;
         this.account = account;
+        this.avatar = avatar;
     }
 
     public Users() {

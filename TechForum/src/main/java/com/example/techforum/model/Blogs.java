@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 public class Blogs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String title;
     private LocalDateTime beginDate;
     @Column(columnDefinition = "LONGTEXT")
@@ -43,11 +43,11 @@ public class Blogs {
     }
 
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

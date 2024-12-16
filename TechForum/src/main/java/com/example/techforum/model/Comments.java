@@ -1,5 +1,6 @@
 package com.example.techforum.model;
 
+import com.example.techforum.dto.CommentDto;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -19,7 +20,19 @@ public class Comments {
     @JoinColumn(name = "user_id")
     private Users user;
 
+    @PrePersist
+    protected void beginDate() {
+        this.date = LocalDateTime.now();
+    }
+
     public Comments() {
+
+    }
+    public Comments(CommentDto cmt) {
+        this.id = cmt.getId();
+        this.content = cmt.getContent();
+        this.blog = cmt.getBlog();
+        this.user = cmt.getUser();
     }
 
     public Integer getId() {

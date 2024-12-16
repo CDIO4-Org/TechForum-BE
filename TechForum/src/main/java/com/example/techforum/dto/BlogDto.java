@@ -12,10 +12,12 @@ import org.hibernate.annotations.ColumnDefault;
 import java.time.LocalDateTime;
 
 public class BlogDto {
+    private Integer id;
+//    @NotBlank(message = "Title cannot be empty")
+//    @Size(min = 3, max = 255, message = "Title must be between 3 and 255 characters")
 //    @NotBlank(message = "Title cannot be empty")
 //    @Size(min = 3, max = 255, message = "Title must be between 3 and 255 characters")
     private String title;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime beginDate;
 //    @NotBlank(message = "Content cannot be empty")
 //    @Size(min = 3, message = "Content must be at least 3 characters")
@@ -39,12 +41,20 @@ public class BlogDto {
     }
 
     public BlogDto(Blogs blog) {
+        this.id = blog.getId();
         this.title = blog.getTitle();
         this.content = blog.getContent();
         this.category = blog.getCategory();
         this.user = blog.getUser();
         this.status = blog.getStatus();
         this.beginDate = blog.getBeginDate();
+    }
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {

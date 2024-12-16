@@ -10,16 +10,16 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface IBlogService {
-    Blogs updateBlog(Long id, BlogDto updatedBlog);
-    void acctiveBlog(Long id);
+    Blogs updateBlog(Integer id, BlogDto updatedBlog);
+    void acctiveBlog(Integer id);
     List<BlogDto> findByUser(Users user);
     Page<BlogDto> findByStatus(Boolean status, Pageable pageable);
     List<BlogDto> getAcctivedBlogs();
     Blogs addNewBlog(BlogDto blog);
-    BlogDto findOne(long id);
-    void delete(long id);
+    BlogDto findOne(Integer id);
+    void delete(Integer id);
     List<BlogDto> findByTitle(String title);
     Integer getLastInsert();
-    Blogs findById(long id);
-
+    Blogs findById(Integer id);
+    List<BlogDto> findByCategoryId(Integer id);
 }
