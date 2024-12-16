@@ -6,6 +6,6 @@ import java.io.IOException;
 
 public interface IUserService {
     Boolean existsByEmail(String email);
-    UserDto findByAccountId(Integer id);
+    UserDto findByAccountName(String accountName);
     void updateUser(Integer id, UserDto userDto) throws IOException;
 }

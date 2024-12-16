@@ -41,12 +41,13 @@ public class AccountService implements IAccountService {
 
     @Override
     public void addNewAccount(RegisterForm account) throws MessagingException {
+        String defautAva = "https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-trắng.jpg";
         Set<Role> roles = roleRepo.findByRoleName("USER");
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         Account newAccount = new Account(roles, account.getPassword(), account.getAccountName());
         accountRepo.save(newAccount);
         Account accountFind = accountRepo.findAccountByAccountName(account.getAccountName());
-        Users newUser= new Users(account.getEmail(), accountFind);
+        Users newUser= new Users(account.getEmail(), accountFind, defautAva);
         userRepo.save(newUser);
         emailRegister.sendEmailRegister(account.getEmail(), account.getAccountName());
     }
