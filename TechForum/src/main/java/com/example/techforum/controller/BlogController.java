@@ -52,6 +52,19 @@ public class BlogController {
         Page<BlogDto> activeBlogs = blogService.findByStatus(false, pageable);
         return ResponseEntity.ok(activeBlogs);
     }
+
+    @GetMapping("/activedBlogs")
+    public ResponseEntity<Page<BlogDto>> getBlogActived(
+            @RequestParam(defaultValue = "0") int page, // Trang bắt đầu, mặc định là 0
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "beginDate,desc") String[] sort// Kích thước mỗi trang, mặc định là 10
+    ) {
+        Sort.Direction direction = Sort.Direction.fromString(sort[1]);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort[0]));
+
+        Page<BlogDto> activeBlogs = blogService.findByStatus(true, pageable);
+        return ResponseEntity.ok(activeBlogs);
+    }
     @GetMapping("/")
     public ResponseEntity<List<BlogDto>> getActivedBlogs() {
         try {
