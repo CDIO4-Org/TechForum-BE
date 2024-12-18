@@ -7,12 +7,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface IBlogStorageRepo extends JpaRepository<BlogStorage, Integer> {
     Optional<BlogStorage> findBlogStoragesByBlogIdAndUserId(Integer blogId, Integer userId);
     int countByBlogId(Integer blogId);
-    Page<BlogStorage> findAllByUserId(Integer userId, Pageable pageable);
+    List<BlogStorage> findAllByUserId(Integer userId);
 
 }

@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/storage")
 @CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
@@ -18,16 +20,8 @@ public class BlogStorageController {
     @Autowired
     private IBlogStorageService blogStorageService;
     @GetMapping("/getAll")
-    public ResponseEntity<Page<BlogStorage>> getBlogNonActived(
-            @RequestParam Integer userId,
-            @RequestParam(defaultValue = "0") int page, // Trang bắt đầu, mặc định là 0
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "id,desc") String[] sort
-    ) {
-        Sort.Direction direction = Sort.Direction.fromString(sort[1]);
-        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort[0]));
-
-        Page<BlogStorage> blogStorages = blogStorageService.findAllByUserId(userId, pageable);
+    public ResponseEntity<List<BlogStorage>> getBlogNonActived(@RequestParam Integer userId) {
+        List<BlogStorage> blogStorages = blogStorageService.findAllByUserId(userId);
         return ResponseEntity.ok(blogStorages);
     }
 

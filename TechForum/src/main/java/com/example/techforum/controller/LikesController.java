@@ -10,6 +10,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/like")
 @CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
@@ -18,16 +20,8 @@ public class LikesController {
     private ILikesService likesService;
 
     @GetMapping("/getAll")
-    public ResponseEntity<Page<Likes>> getBlogLiked(
-            @RequestParam Integer userId,
-            @RequestParam(defaultValue = "0") int page, // Trang bắt đầu, mặc định là 0
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "id,desc") String[] sort
-    ) {
-        Sort.Direction direction = Sort.Direction.fromString(sort[1]);
-        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort[0]));
-
-        Page<Likes> activeBlogs = likesService.findAll(userId, pageable);
+    public ResponseEntity<List<Likes>> getBlogLiked(@RequestParam Integer userId) {
+        List<Likes> activeBlogs = likesService.findAll(userId);
         return ResponseEntity.ok(activeBlogs);
     }
 
