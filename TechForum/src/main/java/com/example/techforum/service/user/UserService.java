@@ -25,7 +25,7 @@ public class UserService implements IUserService {
     public UserDto findByAccountName(String accountName) {
         Users newUser = userRepo.findByAccountName(accountName);
         UserDto user = new UserDto(newUser.getId(),newUser.getFirstName(), newUser.getAvatar(), newUser.getLastName(), newUser.getEmail(), newUser.getGender(),
-                newUser.getPhoneNumber(), newUser.getBirthDate(), newUser.getAddress());
+                newUser.getPhoneNumber(), newUser.getBirthDate(), newUser.getAddress(), newUser.getAccount().getId());
         return user;
     }
 

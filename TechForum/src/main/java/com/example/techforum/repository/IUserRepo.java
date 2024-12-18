@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface IUserRepo extends JpaRepository<Users, Integer> {
     Boolean existsByEmail(String email);
 
-    @Query(value = "select u.id, u.avatar, u.first_name, u.last_name, u.phone_number, u.birth_date, u.email, u.address, u.gender, u.account_id, a.account_name from users as u join account as a on u.account_id = a.id where a.account_name = :accountName", nativeQuery = true)
+    @Query(value = "select u.id, u.avatar, u.first_name, u.last_name, u.phone_number, u.birth_date, u.email, u.address, u.gender, u.account_id from users as u inner join account as a on u.account_id = a.id where a.account_name = :accountName", nativeQuery = true)
     Users findByAccountName(@Param("accountName") String accountName);
 
 

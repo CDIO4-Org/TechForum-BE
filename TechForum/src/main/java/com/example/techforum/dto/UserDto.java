@@ -16,12 +16,13 @@ public class UserDto {
     private LocalDate birthDate;
     private String address;
     private Account account;
+    private Integer accountId;
     private String avaUrl;
 
     public UserDto() {
     }
 
-    public UserDto(Integer id,String firstName, String avaUrl, String lastName, String email, Integer gender, String phoneNumber, LocalDate birthDate, String address) {
+    public UserDto(Integer id,String firstName, String avaUrl, String lastName, String email, Integer gender, String phoneNumber, LocalDate birthDate, String address, Integer accountId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -31,6 +32,20 @@ public class UserDto {
         this.birthDate = birthDate;
         this.address = address;
         this.avaUrl = avaUrl;
+        this.accountId = accountId;
+    }
+
+    public UserDto(String email, Account account) {
+        this.email = email;
+        this.account = account;
+    }
+
+    public Integer getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
     }
 
     public Integer getId() {
@@ -47,11 +62,6 @@ public class UserDto {
 
     public void setAvaUrl(String avaUrl) {
         this.avaUrl = avaUrl;
-    }
-
-    public UserDto(String email, Account account) {
-        this.email = email;
-        this.account = account;
     }
 
     public MultipartFile getAvatar() {
