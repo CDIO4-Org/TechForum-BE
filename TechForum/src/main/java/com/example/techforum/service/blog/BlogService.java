@@ -48,6 +48,12 @@ public class BlogService implements IBlogService{
     }
 
     @Override
+    public Page<BlogDto> getAllBlog(Pageable pageable) {
+        Page<Blogs>blogs = iBlogRepository.findAll(pageable);
+        return  blogs.map(blog -> new BlogDto(blog));
+    }
+
+    @Override
     public List<BlogDto> findByUser(Users user) {
         return iBlogRepository.findByUser(user);
     }
