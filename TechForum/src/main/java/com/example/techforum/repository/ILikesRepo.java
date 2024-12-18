@@ -7,12 +7,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface ILikesRepo extends CrudRepository<Likes, Integer> {
     Optional<Likes> findByBlogIdAndUserId(Integer blogId, Integer userId);
     int countByBlogId(Integer postId);
-    Page<Likes> findAllByUserId(Integer userId,Pageable pageable);
+    
+    List<Likes> findAllByUserId(Integer userId);
 
 }

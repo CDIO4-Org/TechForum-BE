@@ -23,8 +23,8 @@ public class LikesService implements ILikesService{
     private IUserRepo userRepo;
 
     @Override
-    public Page<Likes> findAll(Integer id, Pageable pageable) {
-        return likesRepo.findAllByUserId(id,pageable);
+    public List<Likes> findAll(Integer id) {
+        return likesRepo.findAllByUserId(id);
     }
 
     @Override

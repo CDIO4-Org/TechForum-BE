@@ -24,8 +24,8 @@ public class BlogStorageService implements IBlogStorageService {
     private IUserRepo userRepo;
 
     @Override
-    public Page<BlogStorage> findAllByUserId(Integer id, Pageable pageable) {
-        return null;
+    public List<BlogStorage> findAllByUserId(Integer id) {
+        return blogStorageRepo.findAllByUserId(id);
     }
 
     @Override

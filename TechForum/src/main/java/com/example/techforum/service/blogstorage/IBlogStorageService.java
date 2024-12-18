@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface IBlogStorageService {
-    Page<BlogStorage> findAllByUserId(Integer id,Pageable pageable);
+    List<BlogStorage> findAllByUserId(Integer id);
     String toggleBookMark(Integer blogId, Integer userId);
     void delete(Integer id);
     int getCount(Integer blogId);
