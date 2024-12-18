@@ -22,17 +22,17 @@ public class UserController {
     @Autowired
     private IAccountService accountService;
 
-    @GetMapping("/profile/{id}")
-    public ResponseEntity<UserDto> getProfile(@PathVariable("id") Integer id) {
-        if(userService.findByAccountId(id)==null){
-            return new ResponseEntity(new ResponseMessage("Find not found user"), HttpStatus.NOT_FOUND);
-        }
-        return ResponseEntity.ok(userService.findByAccountId(id));
-    }
-
     @PutMapping(value = "/profile/update/{id}")
     public ResponseEntity<?> updateProfile(@PathVariable("id")Integer id, @ModelAttribute UserDto userDto) throws IOException {
         userService.updateUser(id, userDto);
         return new ResponseEntity<>(new ResponseMessage("Update success"), HttpStatus.OK);
+    }
+
+    @GetMapping("/profile/{accountName}")
+    public ResponseEntity<UserDto> getProfile(@PathVariable("accountName") String accountName) {
+        if(userService.findByAccountName(accountName)==null){
+            return new ResponseEntity(new ResponseMessage("Find not found user"), HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(userService.findByAccountName(accountName));
     }
 }

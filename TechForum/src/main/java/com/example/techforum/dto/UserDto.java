@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDate;
 
 public class UserDto {
+    private Integer id;
     private MultipartFile avatar;
     private String firstName;
     private String lastName;
@@ -20,7 +21,8 @@ public class UserDto {
     public UserDto() {
     }
 
-    public UserDto(String firstName, String avaUrl, String lastName, String email, Integer gender, String phoneNumber, LocalDate birthDate, String address) {
+    public UserDto(Integer id,String firstName, String avaUrl, String lastName, String email, Integer gender, String phoneNumber, LocalDate birthDate, String address) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -29,6 +31,14 @@ public class UserDto {
         this.birthDate = birthDate;
         this.address = address;
         this.avaUrl = avaUrl;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getAvaUrl() {

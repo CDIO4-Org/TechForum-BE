@@ -22,9 +22,9 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserDto findByAccountId(Integer id) {
-        Users newUser = userRepo.findByAccountId(id);
-        UserDto user = new UserDto( newUser.getFirstName(), newUser.getAvatar(), newUser.getLastName(), newUser.getEmail(), newUser.getGender(),
+    public UserDto findByAccountName(String accountName) {
+        Users newUser = userRepo.findByAccountName(accountName);
+        UserDto user = new UserDto(newUser.getId(),newUser.getFirstName(), newUser.getAvatar(), newUser.getLastName(), newUser.getEmail(), newUser.getGender(),
                 newUser.getPhoneNumber(), newUser.getBirthDate(), newUser.getAddress());
         return user;
     }
