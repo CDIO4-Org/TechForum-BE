@@ -10,8 +10,7 @@ import java.time.LocalDate;
 public class ReportDto {
     @NotBlank(message = "Content cannot be empty")
     private String content;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private LocalDate reportDate;
+    private LocalDate reportDate = LocalDate.now();
     private Users user;
     private Blogs blog;
     public ReportDto() {}

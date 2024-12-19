@@ -42,7 +42,7 @@ public class UserService implements IUserService {
         user.setPhoneNumber(userEditDto.getPhoneNumber());
         user.setBirthDate(userEditDto.getBirthDate());
         user.setAddress(userEditDto.getAddress());
-//        user.setAvatar(urlName);
+        user.setAvatar(urlName);
         userRepo.save(user);
     }
 }
