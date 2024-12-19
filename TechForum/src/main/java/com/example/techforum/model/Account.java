@@ -1,5 +1,7 @@
 package com.example.techforum.model;
 
+import com.example.techforum.dto.AccountEditStatus;
+import com.example.techforum.dto.AccountListDto;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -30,6 +32,19 @@ public class Account {
         this.password = password;
         this.accountName = accountName;
         this.status = false;
+    }
+
+    public Account(AccountListDto account){
+        this.id = account.getId();
+        this.accountName = account.getAccountName();
+        this.status = account.getStatus();
+        this.roles = account.getRoles();
+    }
+
+    public Account(AccountEditStatus account){
+        this.id = account.getId();
+        this.status = account.getStatus();
+        this.accountName = account.getAccountName();
     }
 
     public Integer getId() {
