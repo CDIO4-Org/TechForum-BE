@@ -1,6 +1,9 @@
 package com.example.techforum.repository;
 
+import com.example.techforum.model.Blogs;
 import com.example.techforum.model.Reports;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -13,4 +16,5 @@ import java.util.List;
 public interface IReportRepo extends CrudRepository<Reports, Integer> {
     @Query(value = "select * from reports", nativeQuery = true)
     List<Reports> getAllReports();
+    Page<Reports> findBy(Pageable pageable);
 }
