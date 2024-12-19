@@ -80,9 +80,9 @@ public class AccountService implements IAccountService {
         String email = accountRepo.findEmailByAccountId(accountEditStatus.getId());
 
         if (accountEditStatus.getStatus()) {
-            enableAccount.sendEmailEnableAccount(email, accountEditStatus.getAccountName());
-        } else {
             disableAccount.sendEmailDisableAccount(email, accountEditStatus.getAccountName());
+        } else {
+            enableAccount.sendEmailEnableAccount(email, accountEditStatus.getAccountName());
         }
     }
 
