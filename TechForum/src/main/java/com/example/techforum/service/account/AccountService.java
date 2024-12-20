@@ -86,6 +86,11 @@ public class AccountService implements IAccountService {
         }
     }
 
+    @Override
+    public Page<AccountListDto> findByStatus(Boolean status, Pageable pageable) {
+        Page<Account> accounts = accountRepo.findByStatus(status, pageable);
+        return  accounts.map(account -> new AccountListDto(account));
+    }
 
 
 }

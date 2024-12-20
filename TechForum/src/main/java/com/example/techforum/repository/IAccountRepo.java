@@ -1,7 +1,11 @@
 package com.example.techforum.repository;
 
+import com.example.techforum.dto.AccountListDto;
 import com.example.techforum.dto.ImageDto;
 import com.example.techforum.model.Account;
+import com.example.techforum.model.Blogs;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -26,5 +30,7 @@ public interface IAccountRepo extends JpaRepository<Account, Integer> {
 
     @Query(value = "select email from Users where account_id = ?1",nativeQuery = true)
     String findEmailByAccountId(Integer account);
+
+    Page<Account> findByStatus(Boolean status, Pageable pageable);
 
 }

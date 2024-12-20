@@ -85,4 +85,25 @@ public class AccountController {
         accountService.editStatusAccount(id, accountEditStatus);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @GetMapping("/admin/getListStatusActive")
+    public ResponseEntity<Page<AccountListDto>> getListStatusActive(
+            @RequestParam(defaultValue = "0") int page, // Trang bắt đầu, mặc định là 0
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+
+        Page<AccountListDto> accountListDtos = accountService.findByStatus(false, pageable);
+        return ResponseEntity.ok(accountListDtos);
+    }
+
+    @GetMapping("/admin/getListStatusNonActive")
+    public ResponseEntity<Page<AccountListDto>> getListStatusNonActive(
+            @RequestParam(defaultValue = "0") int page, // Trang bắt đầu, mặc định là 0
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+
+        Page<AccountListDto> accountListDtos = accountService.findByStatus(true, pageable);
+        return ResponseEntity.ok(accountListDtos);
+    }
 }
