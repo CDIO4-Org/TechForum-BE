@@ -1,6 +1,7 @@
 package com.example.techforum.service.user;
 
 import com.example.techforum.dto.UserDto;
+import com.example.techforum.dto.UserEditDto;
 import com.example.techforum.model.Users;
 import com.example.techforum.repository.IUserRepo;
 import com.example.techforum.service.cloudinary.CloudinaryService;
@@ -30,17 +31,17 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateUser(Integer id, UserDto userDto) throws IOException {
-        String urlName = cloudinaryService.uploadFile(userDto.getAvatar());
+    public void updateUser(Integer id, UserEditDto userEditDto) throws IOException {
+        String urlName = cloudinaryService.uploadFile(userEditDto.getAvatar());
         System.out.println(urlName);
         Users user = userRepo.findById(id).get();
-        user.setFirstName(userDto.getFirstName());
-        user.setLastName(userDto.getLastName());
-        user.setEmail(userDto.getEmail());
-        user.setGender(userDto.getGender());
-        user.setPhoneNumber(userDto.getPhoneNumber());
-        user.setBirthDate(userDto.getBirthDate());
-        user.setAddress(userDto.getAddress());
+        user.setFirstName(userEditDto.getFirstName());
+        user.setLastName(userEditDto.getLastName());
+        user.setEmail(userEditDto.getEmail());
+        user.setGender(userEditDto.getGender());
+        user.setPhoneNumber(userEditDto.getPhoneNumber());
+        user.setBirthDate(userEditDto.getBirthDate());
+        user.setAddress(userEditDto.getAddress());
         user.setAvatar(urlName);
         userRepo.save(user);
     }

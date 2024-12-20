@@ -5,8 +5,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 
-public class UserDto {
-    private Integer id;
+public class UserEditDto {
+    private MultipartFile avatar;
     private String firstName;
     private String lastName;
     private String email;
@@ -14,15 +14,9 @@ public class UserDto {
     private String phoneNumber;
     private LocalDate birthDate;
     private String address;
-    private Account account;
-    private Integer accountId;
-    private String avaUrl;
 
-    public UserDto() {
-    }
-
-    public UserDto(Integer id,String firstName, String avaUrl, String lastName, String email, Integer gender, String phoneNumber, LocalDate birthDate, String address, Integer accountId) {
-        this.id = id;
+    public UserEditDto(MultipartFile avatar, String firstName, String lastName, String email, Integer gender, String phoneNumber, LocalDate birthDate, String address) {
+        this.avatar = avatar;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -30,37 +24,14 @@ public class UserDto {
         this.phoneNumber = phoneNumber;
         this.birthDate = birthDate;
         this.address = address;
-        this.avaUrl = avaUrl;
-        this.accountId = accountId;
     }
 
-    public UserDto(String email, Account account) {
-        this.email = email;
-        this.account = account;
+    public MultipartFile getAvatar() {
+        return avatar;
     }
 
-    public Integer getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getAvaUrl() {
-        return avaUrl;
-    }
-
-    public void setAvaUrl(String avaUrl) {
-        this.avaUrl = avaUrl;
+    public void setAvatar(MultipartFile avatar) {
+        this.avatar = avatar;
     }
 
     public String getFirstName() {
@@ -117,13 +88,5 @@ public class UserDto {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
     }
 }

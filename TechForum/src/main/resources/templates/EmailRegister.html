@@ -1,129 +1,140 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký thành công</title>
+    <title>Chào Mừng Tới Diễn Đàn Công Nghệ</title>
     <style>
-        /* Reset mặc định */
-        body,
-        table,
-        td,
-        a {
-            text-size-adjust: 100%;
+        body {
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            line-height: 100%;
-            text-decoration: none;
-        }
-
-        body {
-            width: 100% !important;
-            height: 100% !important;
-            background-color: #f4f4f4;
-            font-family: Arial, sans-serif;
-        }
-
-        table {
-            border-collapse: collapse !important;
-        }
-
-        img {
-            border: 0;
-            max-width: 100%;
-        }
-
-        /* Thiết kế chính */
-        .email-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .email-header {
-            background-color: #F48023;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .email-header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-
-        .email-body {
-            padding: 20px;
-            color: #333333;
+            background-color: #f2f2f2;
             display: flex;
-            flex-direction: column;
             justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        .email-body p {
-            margin: 10px 0;
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: 350px;
+            display: block;
+            object-fit: cover;
+        }
+
+        .content {
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        .content h1 {
+            font-size: 26px;
+            font-weight: bold;
+            color: #f48023;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .username-box {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .username-box p {
+            margin: 8px 0;
+            font-size: 15px;
+            color: #333;
+        }
+
+        .username-box .username {
+            font-size: 18px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .button {
+            background: #f48023;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+            color: white;
+            text-decoration: none;
+
+        }
+
+        .button:hover {
+            background: #d4691f;
         }
 
         .email-footer {
-            background-color: #f4f4f4;
-            text-align: center;
+            background: #f4f4f4;
             padding: 15px;
-            font-size: 14px;
-            color: #888888;
+            text-align: center;
+            font-size: 13px;
+            color: #888;
         }
 
         .email-footer a {
-            color: #F48023;
+            color: #f48023;
             text-decoration: none;
         }
 
-        /* Responsive */
-        @media screen and (max-width: 600px) {
-            .email-header h1 {
-                font-size: 20px;
-            }
-
-            .email-body {
-                padding: 15px;
-            }
+        .email-footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
-<table role="presentation" width="100%">
-    <tr>
-        <td align="center">
-            <div class="email-container">
-                <!-- Header -->
-                <div class="email-header">
-                    <h2>ĐĂNG KÝ THÀNH CÔNG!</h2>
-                </div>
+<div class="container">
+    <!-- Header Section -->
+    <div class="header">
+        <img src="https://jobsgo.vn/blog/wp-content/uploads/2023/04/nganh-nghe-linh-vuc-co-cong-nghe-tham-gia.jpg"
+             alt="Background image with various game characters">
+    </div>
 
-                <!-- Body -->
-                <div class="email-body">
-                    <p>Chào <div th:text="${name}"></div></p>
-                    <p>Cảm ơn bạn đã đăng ký tài khoản trên diễn đàn công nghệ của chúng tôi. Tài khoản của bạn đã được kích
-                        hoạt thành công!</p>
-                    <p>Bạn có thể bắt đầu khám phá các chủ đề thú vị, đặt câu hỏi và thảo luận ngay bây giờ.</p>
-                    <p><a href="[link diễn đàn]"
-                          style="background: #F48023; color: #ffffff; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Truy
-                        cập diễn đàn</a></p>
-                </div>
+    <!-- Main Content Section -->
+    <div class="content">
+        <h1>Chào Mừng Tới Diễn Đàn Công Nghệ</h1>
+        <p>Chúc mừng! Bạn đã tạo tài khoản thành công.</p>
+        <div class="username-box">
+            <p><strong>Tên người dùng:</strong></p>
+            <p class="username" th:text="${name}"></p>
+            <p>Cảm ơn bạn đã đăng ký tài khoản trên diễn đàn công nghệ của chúng tôi. Tài khoản của bạn đã được kích hoạt thành công!</p>
+            <p>Bạn có thể bắt đầu khám phá các chủ đề thú vị, đặt câu hỏi và thảo luận ngay bây giờ.</p>
+        </div>
+        <a href="http://localhost:8080/auth/login" class="button">Truy cập diễn đàn</a>
+    </div>
 
-                <!-- Footer -->
-                <div class="email-footer">
-                    <p>Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ chúng tôi qua <a
-                            href="mailto:iamdev2k3@gmail.com">iamdev2k3@gmail.com</a>.</p>
-                    <p>&copy; 2024 Diễn đàn Công nghệ. All rights reserved.</p>
-                </div>
-            </div>
-        </td>
-    </tr>
-</table>
+    <!-- Footer Section -->
+    <div class="email-footer">
+        <p>Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ chúng tôi qua <a href="mailto:iamdev2k3@gmail.com">iamdev2k3@gmail.com</a>.</p>
+        <p>&copy; 2024 Diễn đàn Công nghệ. All rights reserved.</p>
+    </div>
+</div>
 </body>
 
 </html>
