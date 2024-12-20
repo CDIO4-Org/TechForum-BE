@@ -113,6 +113,14 @@ public class BlogController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);  // Nếu không tìm thấy, trả về lỗi 404
         }
     }
+    @GetMapping("/findByUser/{userId}")
+    public ResponseEntity<List<BlogDto>> getBlogsByUserId(@PathVariable("userId") Integer userId) {
+        List<BlogDto> blogs = blogService.findByUser(userId);
+        if (blogs.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(blogs);
+    }
 
 
 //    @GetMapping("/findByStatusFalse")

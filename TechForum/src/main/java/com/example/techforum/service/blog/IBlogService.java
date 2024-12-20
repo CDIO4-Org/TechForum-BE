@@ -12,7 +12,7 @@ import java.util.List;
 public interface IBlogService {
     Blogs updateBlog(Integer id, BlogDto updatedBlog);
     void acctiveBlog(Integer id);
-    List<BlogDto> findByUser(Users user);
+    List<BlogDto> findByUser(Integer user);
     Page<BlogDto> findByStatus(Boolean status, Pageable pageable);
     List<BlogDto> getAcctivedBlogs();
     Blogs addNewBlog(BlogDto blog);
