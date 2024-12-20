@@ -128,6 +128,14 @@ public class BlogController {
         }
         return ResponseEntity.ok(blogs);
     }
+    @GetMapping("/findByUser/{userId}")
+    public ResponseEntity<List<BlogDto>> getBlogsByUserId(@PathVariable("userId") Integer userId) {
+        List<BlogDto> blogs = blogService.findByUser(userId);
+        if (blogs.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(blogs);
+    }
     @GetMapping("/getByid/{id}")
     public ResponseEntity<BlogDto> getBlogById(@PathVariable("id") Integer id) {
         try {
