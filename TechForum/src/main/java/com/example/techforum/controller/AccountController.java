@@ -1,6 +1,5 @@
 package com.example.techforum.controller;
 
-import com.example.techforum.dto.AccountDto;
 import com.example.techforum.request.LoginForm;
 import com.example.techforum.request.RegisterForm;
 import com.example.techforum.response.JwtResponse;
@@ -21,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+
 
 @RestController
 @RequestMapping("/api/auth")
@@ -58,6 +58,7 @@ public class AccountController {
         String token = jwtTokenProvider.generateToken(authentication);
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
         LocalDateTime time = LocalDateTime.now();
-        return new ResponseEntity<>(new JwtResponse(token,userPrinciple.getUsername(),userPrinciple.getAuthorities(),time), HttpStatus.OK);
+        return new ResponseEntity<>(new JwtResponse(token, userPrinciple.getUsername(), userPrinciple.getAuthorities(), time), HttpStatus.OK);
     }
+
 }
