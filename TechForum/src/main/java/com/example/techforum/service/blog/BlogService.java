@@ -54,8 +54,11 @@ public class BlogService implements IBlogService{
     }
 
     @Override
-    public List<BlogDto> findByUser(Users user) {
-        return iBlogRepository.findByUser(user);
+    public List<BlogDto> findByUser(Integer user) {
+        List<Blogs> blogs = iBlogRepository.getAllByUserId(user);
+        return blogs.stream()
+                .map(blog -> new BlogDto(blog))
+                .collect(Collectors.toList());
     }
 
 
