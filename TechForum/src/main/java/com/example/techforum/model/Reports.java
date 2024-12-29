@@ -2,6 +2,7 @@ package com.example.techforum.model;
 
 import com.example.techforum.dto.ReportDto;
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
 
@@ -19,6 +20,8 @@ public class Reports {
     @ManyToOne
     @JoinColumn(name = "blog_id")
     private Blogs blog;
+    @ColumnDefault("0")
+    private Boolean status;
 
     public Reports(ReportDto reportDTO) {
         this.content = reportDTO.getContent();
@@ -32,7 +35,6 @@ public class Reports {
     }
 
     public Reports() {
-
     }
 
     public Integer getId() {
@@ -73,5 +75,13 @@ public class Reports {
 
     public void setBlog(Blogs blog) {
         this.blog = blog;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

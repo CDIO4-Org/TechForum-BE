@@ -43,7 +43,7 @@ public class AccountController {
     @PostMapping("/account/register")
     public ResponseEntity<?> register(@RequestBody RegisterForm account) throws MessagingException {
         if(accountService.existsByAccountName(account.getAccountName()) || userService.existsByEmail(account.getEmail())) {
-            return new ResponseEntity<>(new ResponseMessage("Email or UserName already exists"),HttpStatus.OK);
+            return new ResponseEntity<>(new ResponseMessage("Tên tài khoản hoặc email đã tồn tại"),HttpStatus.BAD_REQUEST);
         }
         accountService.addNewAccount(account);
         return new ResponseEntity<>(new ResponseMessage("Account was be created"), HttpStatus.CREATED);
@@ -51,6 +51,7 @@ public class AccountController {
 
     @PostMapping("/account/login")
     public ResponseEntity<?> login(@RequestBody LoginForm account) {
+        try{
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(account.getAccountName(), account.getPassword())
         );
@@ -59,6 +60,10 @@ public class AccountController {
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
         LocalDateTime time = LocalDateTime.now();
         return new ResponseEntity<>(new JwtResponse(token, userPrinciple.getUsername(), userPrinciple.getAuthorities(), time), HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>(new ResponseMessage("Tài khoản hoặc mật khẩu không đúng"), HttpStatus.UNAUTHORIZED);
+        }
+
     }
 
 }

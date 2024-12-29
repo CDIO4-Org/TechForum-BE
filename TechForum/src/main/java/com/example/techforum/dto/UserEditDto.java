@@ -26,6 +26,19 @@ public class UserEditDto {
         this.address = address;
     }
 
+    public UserEditDto(String firstName, String lastName, String email, Integer gender, String phoneNumber, LocalDate birthDate, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.birthDate = birthDate;
+        this.address = address;
+    }
+
+    public UserEditDto() {
+    }
+
     public MultipartFile getAvatar() {
         return avatar;
     }

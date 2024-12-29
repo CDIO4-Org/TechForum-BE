@@ -32,4 +32,7 @@ public interface IBlogRepo extends JpaRepository<Blogs, Integer> {
     Blogs findObject(@Param("id") Integer id);
     @Query("SELECT b FROM Blogs b WHERE b.category = :categories and b.status = true")
     List<BlogDto> findAllByCategory(@Param("categories") Categories categories);
+    @Modifying
+    @Query(value = "UPDATE Blogs as b SET b.status = false WHERE b.id =:id ", nativeQuery = true)
+    void updateBlogReport(@Param("id") Integer id);
 }
