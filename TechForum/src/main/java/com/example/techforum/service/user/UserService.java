@@ -32,9 +32,11 @@ public class UserService implements IUserService {
 
     @Override
     public void updateUser(Integer id, UserEditDto userEditDto) throws IOException {
-        String urlName = cloudinaryService.uploadFile(userEditDto.getAvatar());
-        System.out.println(urlName);
         Users user = userRepo.findById(id).get();
+        if(userEditDto.getAvatar() != null){
+            String urlName = cloudinaryService.uploadFile(userEditDto.getAvatar());
+            user.setAvatar(urlName);
+        }
         user.setFirstName(userEditDto.getFirstName());
         user.setLastName(userEditDto.getLastName());
         user.setEmail(userEditDto.getEmail());
@@ -42,7 +44,6 @@ public class UserService implements IUserService {
         user.setPhoneNumber(userEditDto.getPhoneNumber());
         user.setBirthDate(userEditDto.getBirthDate());
         user.setAddress(userEditDto.getAddress());
-        user.setAvatar(urlName);
         userRepo.save(user);
     }
 }

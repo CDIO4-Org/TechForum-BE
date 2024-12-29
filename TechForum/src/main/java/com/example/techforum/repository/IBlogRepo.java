@@ -21,7 +21,8 @@ public interface IBlogRepo extends JpaRepository<Blogs, Integer> {
     @Query("SELECT b from Blogs b where b.status = true ORDER BY b.beginDate DESC ")
     List<Blogs> findByStatusTrue();
     Page<Blogs> findByStatus(Boolean status, Pageable pageable);
-    List<BlogDto> findByUser(@Param("user") Users user);
+    @Query("SELECT b FROM Blogs b WHERE b.user.id = :user and b.status = true")
+    List<Blogs> getAllByUserId(@Param("user") Integer user);
     @Query("SELECT b FROM Blogs b WHERE b.title LIKE %:title% and b.status = true")
     List<BlogDto> findByTitle(@Param("title") String title);
 
@@ -32,4 +33,7 @@ public interface IBlogRepo extends JpaRepository<Blogs, Integer> {
     Blogs findObject(@Param("id") Integer id);
     @Query("SELECT b FROM Blogs b WHERE b.category = :categories and b.status = true")
     List<BlogDto> findAllByCategory(@Param("categories") Categories categories);
+    @Modifying
+    @Query(value = "UPDATE Blogs as b SET b.status = false WHERE b.id =:id ", nativeQuery = true)
+    void updateBlogReport(@Param("id") Integer id);
 }

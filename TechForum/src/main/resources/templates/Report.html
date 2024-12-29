@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chào Mừng Tới Diễn Đàn Công Nghệ</title>
+    <title>Tài Khoản Bị Báo Cáo</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -23,9 +23,7 @@
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid #dddddd;
             overflow: hidden;
-            margin: 30px auto;
         }
 
         .header img {
@@ -84,7 +82,6 @@
             transition: background-color 0.3s ease;
             color: white;
             text-decoration: none;
-
         }
 
         .button:hover {
@@ -120,14 +117,19 @@
 
     <!-- Main Content Section -->
     <div class="content">
-        <h1>Chào Mừng Tới Diễn Đàn Công Nghệ</h1>
-        <p>Chúc mừng! Bạn đã tạo tài khoản thành công.</p>
+        <h1>Tài Khoản Bị Báo Cáo</h1>
+        <p>Thông báo! Bài viết của bạn đã bị báo cáo vì vi phạm nguyên tắc cộng đồng.</p>
         <div class="username-box">
-            <p>Chào <strong th:text="${name}"></strong></p>
-            <p>Cảm ơn bạn đã đăng ký tài khoản trên diễn đàn công nghệ của chúng tôi. Tài khoản của bạn đã được kích hoạt thành công!</p>
-            <p>Bạn có thể bắt đầu khám phá các chủ đề thú vị, đặt câu hỏi và thảo luận ngay bây giờ.</p>
+            <p><strong>Tên người dùng:</strong></p>
+            <p class="username" th:text="${name}"></p>
+
+            <p><strong>Bài viết của bạn với tiêu đề:</strong> <span th:text="${postTitle}"></span></p>
+            <p><strong>Đã bị báo cáo vì vi phạm nguyên tắc cộng đồng:</strong> <span th:text="${violationReason}"></span></p>
+            <p><strong>Vào ngày:</strong> <span th:text="${reportDate}"></span></p>
+
+            <p>Bài viết của bạn đã được chúng tôi duyệt. Vui lòng tránh đăng những bài viết gây hiểu lầm hoặc vi phạm nguyên tắc cộng đồng của diễn đàn.</p>
         </div>
-        <a style="color: white" href="http://localhost:8080/auth/login" class="button">Truy cập diễn đàn</a>
+        <a href="http://localhost:8080/auth/login" class="button">Truy Cập Diễn Đàn</a>
     </div>
 
     <!-- Footer Section -->
