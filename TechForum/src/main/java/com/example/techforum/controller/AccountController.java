@@ -52,7 +52,7 @@ public class AccountController {
     @PostMapping("/account/login")
     public ResponseEntity<?> login(@RequestBody LoginForm account) {
         try{
-        Authentication authentication = authenticationManager.authenticate(
+            Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(account.getAccountName(), account.getPassword())
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
